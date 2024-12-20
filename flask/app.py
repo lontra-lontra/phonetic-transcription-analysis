@@ -72,7 +72,6 @@ class Book:
         full_text = ''.join(df['corresponding_text'].tolist())
         return phrases, phrase_positions, full_text
 
-book = Book('flask/static/books/pp/book.csv')
 books = {}
 books_dir = 'flask/static/books'
 for book_name in os.listdir(books_dir):
