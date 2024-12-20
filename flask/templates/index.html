@@ -347,7 +347,7 @@ let isupdating = false;
                 console.log('Log successfully sent:', response);
                 
                 // Redirect after successful AJAX request
-                const nextUrl = `http://127.0.0.1:5000/?i=${i + 1}&language=${language}&book_name=${book_name}`;
+                const nextUrl = `${window.location.origin}/?i=${i + 1}&language=${language}&book_name=${book_name}`;
                 window.location.href = nextUrl;
             },
             error: function(error) {
