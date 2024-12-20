@@ -16,6 +16,7 @@ os.makedirs(AUDIO_DIR, exist_ok=True)
 
 
 def text_to_speech(text, audio_path, language):
+    os.makedirs(os.path.dirname(audio_path), exist_ok=True)
     tts = gTTS(text=text, lang=language, slow=False)
     tts.save(audio_path)
 
