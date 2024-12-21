@@ -93,6 +93,8 @@ def create_book_folder_from_txt(file_name):
                     print(content[0:10])
                     break
 
+
+
 create_book_folder_from_txt('maluquinho.txt')
 
 
