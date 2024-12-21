@@ -87,6 +87,16 @@ for book_name in os.listdir(books_dir):
 
 @app.route('/book_list')
 def books_list():
+    book_names = books.keys()
+    book_list_html = "<ul>"
+
+    for book_name in book_names:
+        book_list_html += f"<li>{book_name}</li>"
+        book_list_html += f' - <a href="/?i=0&language={book_name[-2:]}&book_name={book_name}">Open</a></li>'
+    book_list_html += "</ul>"
+
+
+    return f"<html><body><h1>Book List</h1>{book_list_html}</body></html>"
     return "<html><body><h1>Hello, World!</h1></body></html>"
 @app.route('/')
 def index():
