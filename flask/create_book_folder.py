@@ -95,7 +95,7 @@ def create_book_folder_from_txt(file_name):
 
 
 
-create_book_folder_from_txt('maluquinho.txt')
+create_book_folder_from_txt('recunajo_es.txt')
 
 
 
