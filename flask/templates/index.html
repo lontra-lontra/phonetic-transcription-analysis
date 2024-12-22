@@ -191,6 +191,7 @@ let isupdating = false;
 
         let phrase_a = document.getElementById('guess').textContent;  // Use innerText for better handling
         phrase_a = phrase_a.replace(/\n/g, '');  // Remove newlines
+        phrase_a = phrase_a.replace('  ', ' ');
 
         let deletou = false;
         if (phrase_a.length < lastGuessSize) {
