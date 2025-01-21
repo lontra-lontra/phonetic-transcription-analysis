@@ -27,6 +27,7 @@ from urllib.parse import quote
 
 import requests
 import pandas as pd
+import sys
 
 
 def remove_non_printable(text):
@@ -93,12 +94,10 @@ def create_book_folder_from_txt(file_name):
                     print(content[0:10])
                     break
 
-
-
-create_book_folder_from_txt('recunajo_es.txt')
-
-
-
-
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python create_book_folder.py <book_name.txt>")
+    else:
+        create_book_folder_from_txt(sys.argv[1])
 
 

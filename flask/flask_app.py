@@ -66,14 +66,16 @@ def get_phrases_phrase_positions_and_full_text_from_csv(csv_file_path):
 class Book:
     def __init__(self, csv_file_path):
         self.csv_file_path = csv_file_path
-        self.phrases, self.phrase_positions, self.full_text = self._load_data_from_csv()
+        self.phrases, self.phrase_positions, self.full_text , self.corresponding_texts = self._load_data_from_csv()
+
 
     def _load_data_from_csv(self):
         df = pd.read_csv(self.csv_file_path)
         phrases = df['phrase'].tolist()
-        phrase_positions = df['position'].tolist()
+        #phrase_positions = df['position'].tolist()
+        phrase_positions = 0
         full_text = ''.join(df['corresponding_text'].tolist())
-        return phrases, phrase_positions, full_text
+        return phrases, phrase_positions, full_text , df['corresponding_text'].tolist()
 
 books = {}
 books_dir = 'flask/static/books'
@@ -89,10 +91,8 @@ for book_name in os.listdir(books_dir):
 def books_list():
     book_names = books.keys()
     book_list_html = "<ul>"
-
     for book_name in book_names:
-        book_list_html += f"<li>{book_name}</li>"
-        book_list_html += f' - <a href="/?i=0&language={book_name[-2:]}&book_name={book_name}">Open</a></li>'
+        book_list_html += f'<li><a href="/?i=0&language={book_name[-2:]}&book_name={book_name}">{book_name}</a></li>'
     book_list_html += "</ul>"
 
 
@@ -109,6 +109,7 @@ def index():
 
     book = books[book_name]
     phrases = book.phrases
+    corresponding_texts = book.corresponding_texts
     phrase_positions = book.phrase_positions
     full_text = book.full_text
 
@@ -116,7 +117,12 @@ def index():
     phrase = phrases[phrase_id] if 0 <= phrase_id < len(phrases) else f"Phrase not found.{len(phrases)}"
     text = full_text
     text = text.replace('"', '´')
-    all_text_before = json.dumps(text[:phrase_positions[phrase_id]].replace('\n', '\n'))
+
+    
+
+    print(corresponding_texts[:phrase_id])
+    all_text_before = json.dumps(''.join(corresponding_texts[:phrase_id]))
+    
     return render_template('index.html', phrase=phrase, all_text_before = all_text_before,phrases_before = [], phrases_after = phrases[phrase_id+1:], phrase_id=phrase_id, total_phrases=len(phrases), book_name=book_name)
 
 @app.route('/define', methods=['POST'])
