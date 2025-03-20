@@ -31,11 +31,11 @@
         <p id="phrase" style="display: none;">{{ phrase }}</p>
     </div>
     
-    <div>
+    <div style="margin-left: 7px;">
         <p id="masked-phrase" style="font-size: inherit;"></p>
     </div>    
 
-    <div id="guess-form">
+    <div id="guess-form" >
         <label for="guess"></label>
         <div id="guess" contenteditable="true" style="font-size: inherit; border: 1px solid #ccc; padding: 10px; min-height: 30px;" onkeydown="if(event.key === 'Enter'){handleGuess(); event.preventDefault();}" oninput="handleCharacterInput(event)"></div>
 
@@ -333,7 +333,7 @@ let isupdating = false;
 
 
         all_text_before = all_text_before.replace(/{([^}]*)}/g, function(match, p1) {
-            return `<br><img src="static/images/${p1}.png"  >`;
+            return `<br><img src="static/images/${p1}.png" style="display: block; margin: 0 auto;">`;
         });
        
 
