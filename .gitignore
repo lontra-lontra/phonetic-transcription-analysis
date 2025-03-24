@@ -2,3 +2,4 @@ static/audio
 flask/static/audio/
 flask/static/books/
 venv
+flask/static/books/**/data.json

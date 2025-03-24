@@ -143,13 +143,14 @@ def log():
     failure_ids = data.get('failure_ids', [])
     failure_times = data.get('failure_times', [])
     failure_chars = data.get('failure_chars', [])
-
+    phrase_id = data.get('phrase_id')
 
     print(f"Timestamp: {timestamp}")
     print(f"Time of Success: {time_of_success}")
     print(f"Failure IDs: {failure_ids}")
     print(f"Failure Times: {failure_times}")
     print(f"Failure Chars: {failure_chars}")
+    print(f"phrase_id: {phrase_id}")
 
 
     log_data = {
@@ -157,7 +158,8 @@ def log():
         'time_of_success': time_of_success,
         'failure_ids': failure_ids,
         'failure_times': failure_times,
-        'failure_chars': failure_chars
+        'failure_chars': failure_chars,
+        'phrase_id': phrase_id
     }
 
     json_file_path = f'flask/static/books/{book_name}/data.json'

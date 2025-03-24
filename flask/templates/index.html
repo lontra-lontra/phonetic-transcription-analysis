@@ -317,6 +317,46 @@ let isupdating = false;
     sel.addRange(range);
 
 
+
+
+
+
+    if (phrase === phrase_m) {
+        const i = parseInt(new URLSearchParams(window.location.search).get('i'));
+        const book_name = new URLSearchParams(window.location.search).get('book_name');
+        const language = new URLSearchParams(window.location.search).get('language');
+
+
+        // Submit the times_of_succes using POST request with JSON content type
+        const timestamp = new Date().toISOString(); // Get the current timestamp
+        time_of_succes.pop();
+
+        $.ajax({
+            url: '/log',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+            timestamp: timestamp,
+            time_of_success: time_of_succes,
+            failure_ids: failure_ids,
+            failure_times: failure_times,
+            failure_chars: failure_chars,
+            phrase_id: i,
+            book_name: book_name,
+            }),
+            success: function(response) {
+                console.log('Log successfully sent:', response);
+                // Redirect after successful AJAX request
+                const nextUrl = `${window.location.origin}/?language=${language}&book_name=${book_name}&i=${i + 1}`;
+                window.location.href = nextUrl;
+            },
+            error: function(error) {
+            console.error('Error logging data:', error);
+            }
+            
+        });
+    }
+
     isupdating = false;
 });
 
@@ -383,13 +423,14 @@ let isupdating = false;
             failure_ids: failure_ids,
             failure_times: failure_times,
             failure_chars: failure_chars,
+            phrase_id: i,
             book_name: book_name,
             }),
             success: function(response) {
                 console.log('Log successfully sent:', response);
                 
                 // Redirect after successful AJAX request
-                const nextUrl = `${window.location.origin}/?i=${i + 1}&language=${language}&book_name=${book_name}`;
+                const nextUrl = `${window.location.origin}/?language=${language}&book_name=${book_name}&i=${i + 1}`;
                 window.location.href = nextUrl;
             },
             error: function(error) {
