@@ -16,11 +16,6 @@ AUDIO_DIR = 'static/audio'
 os.makedirs(AUDIO_DIR, exist_ok=True)
 
 
-def text_to_speech(text, audio_path, language):
-    os.makedirs(os.path.dirname(audio_path), exist_ok=True)
-
-    tts = gTTS(text=text, lang=language, slow=False)
-    tts.save(audio_path)
 
 
 def add_to_df(times_of_success, phrase_id, time):
@@ -179,15 +174,27 @@ def log():
     return jsonify({'status': 'success'})
 
 
+
+def text_to_speech(text, audio_path, language):
+    os.makedirs(os.path.dirname(audio_path), exist_ok=True)
+    tts = gTTS(text=text, lang=language, slow=False)
+    tts.save(audio_path)
+
 @app.route('/speak', methods=['POST'])
 def speak():
     print("creating audio")
     text = request.form.get('text', '')
     language = request.form.get('language', '')
-    audio_filename = language+quote(text.replace(' ', '_') + '.mp3')  # Create a unique filename based on the text and encode it
-    audio_path = os.path.join("flask/"+AUDIO_DIR, audio_filename)
-    text_to_speech(text, audio_path,language)
-    return jsonify({'audio_url': f'/audio/{audio_filename}'})
+    audio_filename = language + '_' + quote(text.replace(' ', '_')) + '.mp3'
+    
+    # Use base path relative to the script location
+    audio_path = os.path.join(os.path.dirname(__file__), AUDIO_DIR, audio_filename)
+
+    text_to_speech(text, audio_path, language)
+
+    # Return URL for the audio
+    return jsonify({'audio_url': f'/static/audio/{audio_filename}'})
+
 
 
 @app.route('/audio/<filename>')
@@ -240,4 +247,4 @@ def get_french_definition(french_word):
         return definition
 
 if __name__ == '__main__':
-    app.run(debug=True, port=100)
+    app.run(debug=True)
