@@ -199,7 +199,7 @@ def speak():
 
         text_to_speech(text, audio_path, language)
 
-        return jsonify({'audio_url': f'/static/audio/{audio_filename}'})
+        return jsonify({'audio_url': f'lontralontra.pythonanywhere.com/static/audio/{audio_filename}'})
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500
