@@ -9,7 +9,7 @@ import json
 import pandas as pd
 from urllib.parse import quote
 
-app = Flask(__name__)
+app = Flask(__name__,port = 100)
 
 # Path to save audio files
 AUDIO_DIR = 'static/audio'
