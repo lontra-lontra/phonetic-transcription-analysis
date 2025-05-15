@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>French Language Tool</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 </head>
 <body style="margin: 10%;"></body>
 
@@ -38,11 +39,6 @@
     <div id="guess-form" >
         <label for="guess"></label>
         <div id="guess" contenteditable="true" style="font-size: inherit; border: 1px solid #ccc; padding: 10px; min-height: 30px;" onkeydown="if(event.key === 'Enter'){handleGuess(); event.preventDefault();}" oninput="handleCharacterInput(event)"></div>
-
-        <script>
-            function handleCharacterInput(event) {
-            }
-        </script>
     </div>
 
     <form id="define-form" style="text-align: center; width: 100%;" onsubmit="return false;">
@@ -61,9 +57,57 @@
         <iframe src="https://fr.wiktionary.org/wiki/magnifique" style="width: 100%; height: 100%; border: none;"></iframe>
     </div>
 
-    
+    <div id="resumePrompt" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -30%); background:white; border:1px solid black; padding:20px; z-index:9999;">
+        <p>You have already reached a further point in the book. Do you want to resume from there?</p>
+        <button id="resumeYes">Yes, take me there</button>
+        <button id="resumeNo">No, stay here</button>
+        <button id="resumeNever">No, and stop asking</button>
+      </div>
+      
 
     <script>
+        function showCustomResumePrompt(old_i, i, language, book_name) {
+        const modal = document.getElementById('resumePrompt');
+        modal.style.display = 'block';
+
+        document.getElementById('resumeYes').onclick = function() {
+        const previousUrl = `${window.location.origin}/?language=${language}&book_name=${book_name}&i=${old_i}`;
+        window.location.href = previousUrl;
+        };
+
+        document.getElementById('resumeNo').onclick = function() {
+        modal.style.display = 'none';
+        };
+
+        document.getElementById('resumeNever').onclick = function() {
+        localStorage.setItem('skipAskToResume', 'true');
+        modal.style.display = 'none';
+        };
+        }
+
+        function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) 
+        {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
 
         var phrase = JSON.parse('{{ phrase|tojson|safe }}');
         var time_of_succes = new Array(phrase.length).fill(null);
@@ -71,7 +115,9 @@
         var failure_ids = [];
         var failure_times = [];
         var failure_chars = [];
-
+        var entered_chars = [];
+        var entered_times = [];
+        var pageLoadTime;
 
         window.onload = function() {
             //submitSpeak(phrase);
@@ -80,20 +126,37 @@
             document.getElementById('guess').focus();
             displayAllTextBefore();
             displayPhrasesBefore();
-
+            const i = parseInt(new URLSearchParams(window.location.search).get('i'));
+            const language = (new URLSearchParams(window.location.search).get('language'));
+            const book_name = new URLSearchParams(window.location.search).get('book_name');
+            const nextUrl = `${window.location.origin}/?language=${language}&book_name=${book_name}&i=${i + 1}`;
+  
             if (phrase[0] == '{')
             {
-                const i = parseInt(new URLSearchParams(window.location.search).get('i'));
-                const language = (new URLSearchParams(window.location.search).get('language'));
-                const book_name = new URLSearchParams(window.location.search).get('book_name');
-                alert('End of the book');
-                const nextUrl = `${window.location.origin}/?i=${i + 1}&language=${language}&book_name=${book_name}`;
                 window.location.href = nextUrl;
             }
 
             window.scrollTo(0, document.body.scrollHeight);
             loadSpeak(phrase,language);
+            let old_i = getCookie('i');
+            alert('old_i: '+old_i);
+            // Check if user opted out of future prompts
+const skipPrompt = localStorage.getItem('skipAskToResume') === 'true';
 
+            if (!skipPrompt && old_i > i) {
+                showCustomResumePrompt(old_i, i, language, book_name);
+            }
+            if (
+                old_i === null ||
+                old_i === undefined ||
+                isNaN(old_i) ||
+                old_i < i
+                ) 
+            {
+                setCookie('i', i, 1);
+            }
+
+            handleInput();
         };
 
         function submitDefinition() {
@@ -176,10 +239,6 @@
             }
         }
 
-
-        
-
-        // Optionally, set the value in your input field
         submitDefinition();
     }
 });
@@ -204,7 +263,9 @@ let isupdating = false;
 
 
 
-    $('#guess').on('input', function() {
+    $('#guess').on('input', handleInput);
+    
+    function handleInput() {
         
         if (isupdating) {
             return;
@@ -216,7 +277,7 @@ let isupdating = false;
         let phrase_d = '';
 
 
-        const phrase_m = $('#masked-phrase').text();
+        let phrase_m = $('#masked-phrase').text();
 
 
         let phrase_a = document.getElementById('guess').textContent;  
@@ -224,17 +285,18 @@ let isupdating = false;
         phrase_a = phrase_a.replace('  ', ' ');
 
 
-
+        // detect if the user deleted a character
         let deletou = false;
         if (phrase_a.length < lastGuessSize) {
             //alert('DELETOUUU');
             deletou = true;
+            entered_chars.push("<");
+            entered_times.push(new Date().getTime() - pageLoadTime);
             //return;
         }
         lastGuessSize = phrase_a.length;
 
-        //alert(phrase_a+'|');
-        //alert('('+phrase_a[phrase_a.length - 1]+')');
+        // dectect if the user added a space, if so remove it 
         if (phrase_a.length > 0 && (phrase_a[phrase_a.length - 1] === ' ' || phrase_a[phrase_a.length - 1] === '\n' || phrase_a[phrase_a.length - 1] === "\u00a0") )  {
             //alert('Please do not end your guess with a space');
             phrase_a = phrase_a.trimEnd();
@@ -245,22 +307,33 @@ let isupdating = false;
         //alert('ultima letra:'+phrase_a.length);
 
         let wrong_character = '';
-        for (let i = 0; i < phrase.length; i++) {
+        for (let i = 0; i < phrase.length; i++) 
+        {
             let char_d;
-            if (i >= phrase_a.length) {
+            if (i >= phrase_a.length) 
+            {
                 char_d = phrase_m[i];
-            } else {
+            } 
+            else 
+            {
                 const char_a = phrase_a[i] || '';
                 const char = phrase[i];
 
                 const l_char = char.toLowerCase();
                 const l_char_a = char_a.toLowerCase();
-                if (l_char === l_char_a) {
-                    if (time_of_succes[i] === null){
+                if (l_char === l_char_a) 
+                {
+                    
+                    if (time_of_succes[i] === null)
+                    {
+                        entered_chars.push(char);
+                        entered_times.push(new Date().getTime() - pageLoadTime);
                         time_of_succes[i] = new Date().getTime() - pageLoadTime;
                     }
                     char_d = char;
-                } else {
+                } 
+                else 
+                {
                     wrong_character = char_a;
                     char_d = phrase_m[i];
                 }
@@ -270,10 +343,6 @@ let isupdating = false;
         const firstHashIndex = phrase_d.indexOf('#') !== -1 ? phrase_d.indexOf('#') : phrase_d.length;
         let substringUntilFirstHash = phrase_d.substring(0, firstHashIndex);
 
-        //document.getElementById('guess').innerText = phrase_a;
-
-        //alert(substringUntilFirstHash.length + ' ' + substringUntilFirstHash + '|');
-        //alert(phrase_a.replace('\n','').length + ' ' + phrase_a.replace('\n','') + '|');
         if(substringUntilFirstHash.length > phrase_a.replace('\n','').length){
             //if (substringUntilFirstHash[substringUntilFirstHash.length-1] != ' '){   
             console.log('fiz!');     
@@ -285,13 +354,16 @@ let isupdating = false;
         }
         else{
             if(wrong_character != ''){
-                if (deletou === false){
-                console.log('Error: Incorrect character entered:', wrong_character);
-                console.log('Error: Incorrect character entered:', phrase_a.length);
+                if (deletou === false)
+                {
+                    console.log('Error: Incorrect character entered:', wrong_character);
+                    console.log('Error: Incorrect character entered:', phrase_a.length);
                     failure_chars.push(wrong_character);
                     failure_ids.push(phrase_a.length);
                     failure_times.push(new Date().getTime() - pageLoadTime);
-                    }
+                    entered_chars.push(wrong_character);
+                    entered_times.push(new Date().getTime() - pageLoadTime);
+                }
             }
         }   
         
@@ -317,11 +389,9 @@ let isupdating = false;
     sel.addRange(range);
 
 
+    phrase_m = $('#masked-phrase').text();
+    if (phrase_m === phrase) {
 
-
-
-
-    if (phrase === phrase_m) {
         const i = parseInt(new URLSearchParams(window.location.search).get('i'));
         const book_name = new URLSearchParams(window.location.search).get('book_name');
         const language = new URLSearchParams(window.location.search).get('language');
@@ -330,7 +400,7 @@ let isupdating = false;
         // Submit the times_of_succes using POST request with JSON content type
         const timestamp = new Date().toISOString(); // Get the current timestamp
         time_of_succes.pop();
-
+        
         $.ajax({
             url: '/log',
             type: 'POST',
@@ -341,6 +411,8 @@ let isupdating = false;
             failure_ids: failure_ids,
             failure_times: failure_times,
             failure_chars: failure_chars,
+            entered_chars: entered_chars,
+            entered_times: entered_times,
             phrase_id: i,
             book_name: book_name,
             }),
@@ -358,48 +430,46 @@ let isupdating = false;
     }
 
     isupdating = false;
-});
+}
 
 
 
-        
+    var masked_phrase = maskPhrase(phrase);
+    $('#masked-phrase').text(masked_phrase);
 
-        var masked_phrase = maskPhrase(phrase);
-        $('#masked-phrase').text(masked_phrase);
-
-        var phrases_before = [] //JSON.parse('{{ phrases_before|tojson|safe }}');
-        var all_text_before = {{ all_text_before|safe }};
-        all_text_before = all_text_before.replace(/\n/g, '<br>');
+    var phrases_before = [] //JSON.parse('{{ phrases_before|tojson|safe }}');
+    var all_text_before = {{ all_text_before|safe }};
+    all_text_before = all_text_before.replace(/\n/g, '<br>');
 
 
-        all_text_before = all_text_before.replace(/{([^}]*)}/g, function(match, p1) {
-            return `<br><img src="static/images/${p1}.png" style="display: block; margin: 0 auto;">`;
-        });
+    all_text_before = all_text_before.replace(/{([^}]*)}/g, function(match, p1) {
+        return `<br><img src="static/images/${p1}.png" style="display: block; margin: 0 auto;">`;
+    });
        
 
 
-        function displayPhrasesBefore() {
-            var container = $('#phrases-before-container');
-            phrases_before.forEach(function(phrase) {
-                var div = $('<div></div>').text(phrase).css({
-                    'font-size': 'inherit',
-                    'padding': '5px 0'
-                });
-                container.append(div);
+    function displayPhrasesBefore() {
+        var container = $('#phrases-before-container');
+        phrases_before.forEach(function(phrase) {
+            var div = $('<div></div>').text(phrase).css({
+                'font-size': 'inherit',
+                'padding': '5px 0'
             });
-        }
+            container.append(div);
+        });
+    }
 
-        function displayAllTextBefore() {
-            var container = $('#all-text-before-container');
-            //container.text(all_text_before);
-            container.html(all_text_before);
-        }
+    function displayAllTextBefore() {
+        var container = $('#all-text-before-container');
+        //container.text(all_text_before);
+        container.html(all_text_before);
+    }
 
 
 
-        function handleGuess() {
-        $('#word').val("");
-        submitDefinition();
+    function handleGuess() {
+    $('#word').val("");
+    submitDefinition();
 
 
     const phrase_m = $('#masked-phrase').text();
@@ -423,6 +493,7 @@ let isupdating = false;
             failure_ids: failure_ids,
             failure_times: failure_times,
             failure_chars: failure_chars,
+            
             phrase_id: i,
             book_name: book_name,
             }),
@@ -448,12 +519,6 @@ let isupdating = false;
         submitSpeak(phrase,language); 
     }
     }
-    
     </script>
-
-
-
-
-
 </body>
 </html>

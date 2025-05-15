@@ -6251,5 +6251,43 @@
             "u"
         ],
         "phrase_id": 197
+    },
+    {
+        "timestamp": "2025-05-15T00:08:30.144Z",
+        "time_of_success": [
+            1375,
+            1552,
+            1863,
+            2201,
+            2390,
+            2835,
+            3070,
+            3209,
+            null
+        ],
+        "failure_ids": [],
+        "failure_times": [],
+        "failure_chars": [],
+        "entered_chars": [
+            "C",
+            "h",
+            "a",
+            "p",
+            "i",
+            "t",
+            "r",
+            "e"
+        ],
+        "entered_times": [
+            1375,
+            1552,
+            1863,
+            2201,
+            2390,
+            2835,
+            3070,
+            3209
+        ],
+        "phrase_id": 0
     }
 ]

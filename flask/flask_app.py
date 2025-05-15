@@ -85,7 +85,9 @@ for book_name in os.listdir(books_dir):
         books[book_name] = Book(book_path)
 
 
-
+@app.route('/script.js')
+def script_js():
+    return send_from_directory('static', 'script.js')
 
 @app.route('/book_list')
 def books_list():
@@ -103,9 +105,6 @@ def index():
     phrase_id = request.args.get('i', default=0, type=int)
     # http://127.0.0.1:5000/?i=100?livre=pp
     book_name = request.args.get('book_name', type=str)
-
-
-
 
     book = books[book_name]
     phrases = book.phrases
@@ -138,6 +137,8 @@ def log():
     data = request.get_json()
     timestamp = data.get('timestamp')
     time_of_success = data.get('time_of_success')
+    entered_chars = data.get('entered_chars')
+    entered_times = data.get('entered_times')
     book_name = data.get('book_name')
     print(f"Book Name: {book_name}")
     failure_ids = data.get('failure_ids', [])
@@ -145,6 +146,8 @@ def log():
     failure_chars = data.get('failure_chars', [])
     phrase_id = data.get('phrase_id')
 
+    print(f"Entered Chars: {entered_chars}")
+    print(f"Entered Times: {entered_times}")
     print(f"Timestamp: {timestamp}")
     print(f"Time of Success: {time_of_success}")
     print(f"Failure IDs: {failure_ids}")
@@ -159,6 +162,8 @@ def log():
         'failure_ids': failure_ids,
         'failure_times': failure_times,
         'failure_chars': failure_chars,
+        'entered_chars': entered_chars,
+        'entered_times': entered_times,
         'phrase_id': phrase_id
     }
 
