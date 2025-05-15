@@ -184,18 +184,19 @@ def log():
 
 @app.route('/speak', methods=['POST'])
 def speak():
-    print("creating audio")
     text = request.form.get('text', '')
     language = request.form.get('language', '')
-    audio_filename = language+quote(text.replace(' ', '_') + '.mp3')  # Create a unique filename based on the text and encode it
-    audio_path = os.path.join("flask/"+AUDIO_DIR, audio_filename)
-    text_to_speech(text, audio_path,language)
-    return jsonify({'audio_url': f'/audio/{audio_filename}'})
+    audio_filename = language + '_' + quote(text.replace(' ', '_')) + '.mp3'
+    audio_path = os.path.join(app.root_path, AUDIO_DIR, audio_filename)
+    
+    # Call your TTS function
+    text_to_speech(text, audio_path, language)
 
+    return jsonify({'audio_url': f'/static/audio/{audio_filename}'})
 
 @app.route('/audio/<filename>')
-def audio(filename):
-    return send_from_directory(AUDIO_DIR, quote(filename))
+def serve_audio(filename):
+    return send_from_directory(os.path.join(app.root_path, AUDIO_DIR), filename)
 
 def get_french_definition__(french_word):
     try:
