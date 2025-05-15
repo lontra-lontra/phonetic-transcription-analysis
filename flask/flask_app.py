@@ -174,22 +174,26 @@ def log():
     return jsonify({'status': 'success'})
 
 
-
 def text_to_speech(text, audio_path, language):
-    os.makedirs(os.path.dirname(audio_path), exist_ok=True)
-    tts = gTTS(text=text, lang=language, slow=False)
-    tts.save(audio_path)
+    try:
+        # Skip if file already exists
+        if not os.path.exists(audio_path):
+            os.makedirs(os.path.dirname(audio_path), exist_ok=True)
+            tts = gTTS(text=text, lang=language, slow=False)
+            tts.save(audio_path)
+    except Exception as e:
+        raise RuntimeError(f"text_to_speech failed: {str(e)}")
 
 @app.route('/speak', methods=['POST'])
 def speak():
     try:
-        print("creating audio")
         text = request.form.get('text', '')
         language = request.form.get('language', '')
 
         if not text or not language:
             return jsonify({'error': 'Missing text or language'}), 400
 
+        # Generate a unique filename
         audio_filename = language + '_' + quote(text.replace(' ', '_')) + '.mp3'
         audio_path = os.path.join(os.path.dirname(__file__), AUDIO_DIR, audio_filename)
 
