@@ -9,7 +9,7 @@ import json
 import pandas as pd
 from urllib.parse import quote
 
-app = Flask(__name__,port = 100)
+app = Flask(__name__)
 
 # Path to save audio files
 AUDIO_DIR = 'static/audio'
@@ -240,4 +240,4 @@ def get_french_definition(french_word):
         return definition
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=100)
