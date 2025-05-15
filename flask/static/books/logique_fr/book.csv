@@ -1,0 +1,999 @@
+phrase,id,position,corresponding_text
+Logique mathématique,0,0,"Logique mathématique
+
+
+"
+La logique mathématique ou métamathématique est une discipline des mathématiques inventée à la fin du XIXe siècle,1,23,"La logique mathématique ou métamathématique est une discipline des mathématiques inventée à la fin du XIXe siècle,"
+qui s'est donné comme objet l'étude des mathématiques en tant que langage,2,137," qui s'est donné comme objet l'étude des mathématiques en tant que langage.
+
+"
+Les objets fondamentaux de la logique mathématique sont les formules représentant les énoncés mathématiques,3,214,"Les objets fondamentaux de la logique mathématique sont les formules représentant les énoncés mathématiques,"
+les dérivations ou démonstrations formelles représentant les raisonnements mathématiques et les sémantiques ou modèles ou interprétations dans des structures qui donnent un « sens » mathématique générique aux formules,4,322, les dérivations ou démonstrations formelles représentant les raisonnements mathématiques et les sémantiques ou modèles ou interprétations dans des structures qui donnent un « sens » mathématique générique aux formules (
+et parfois même aux démonstrations,5,542,et parfois même aux démonstrations)
+comme certains invariants : par exemple l'interprétation des formules du calcul des prédicats permet de leur affecter une valeur de vérité,6,577," comme certains invariants : par exemple l'interprétation des formules du calcul des prédicats permet de leur affecter une valeur de vérité.
+"
+Histoire de la logique mathématique,7,718,"Histoire de la logique mathématique
+"
+Article détaillé : Histoire de la logique,8,754,"Article détaillé : Histoire de la logique.
+"
+Naissance de la logique mathématique et logicisme,9,797,"Naissance de la logique mathématique et logicisme
+"
+Article connexe : Logicisme,10,847,"Article connexe : Logicisme.
+
+"
+La logique mathématique[2] est née à la fin du XIXe siècle de la logique au sens philosophique du terme,11,877,La logique mathématique[2] est née à la fin du XIXe siècle de la logique au sens philosophique du terme ;
+elle est l'une des pistes explorées par les mathématiciens de cette époque afin de résoudre la crise des fondements mathématiques provoquée par la complexification des mathématiques et l'apparition des paradoxes,12,982, elle est l'une des pistes explorées par les mathématiciens de cette époque afin de résoudre la crise des fondements mathématiques provoquée par la complexification des mathématiques et l'apparition des paradoxes.
+Ses débuts sont marqués par la rencontre entre deux idées nouvelles :,13,1195," Ses débuts sont marqués par la rencontre entre deux idées nouvelles :
+
+"
+la volonté chez Frege,14,1267,"    la volonté chez Frege,"
+Russell,15,1293," Russell,"
+Peano et Hilbert de donner une fondation axiomatique aux mathématiques,16,1302," Peano et Hilbert de donner une fondation axiomatique aux mathématiques ;
+"
+la découverte par George Boole de l'existence de structures algébriques permettant de définir un « calcul de vérité »,17,1376,"    la découverte par George Boole de l'existence de structures algébriques permettant de définir un « calcul de vérité ».
+
+"
+La logique mathématique se fonde sur les premières tentatives de traitement formel des mathématiques,18,1500,"La logique mathématique se fonde sur les premières tentatives de traitement formel des mathématiques,"
+dues à Leibniz et Lambert,19,1601, dues à Leibniz et Lambert (
+fin XVIIe siècle - début XVIIIe siècle,20,1629,fin XVIIe siècle - début XVIIIe siècle).
+Leibniz a en particulier introduit une grande partie de la notation mathématique moderne,21,1669, Leibniz a en particulier introduit une grande partie de la notation mathématique moderne (
+usage des quantificateurs,22,1760,"usage des quantificateurs,"
+symbole d'intégration,23,1786," symbole d'intégration,"
+etc,24,1809, etc.).
+Toutefois on ne peut parler de logique mathématique qu'à partir du milieu du XIXe siècle,25,1816," Toutefois on ne peut parler de logique mathématique qu'à partir du milieu du XIXe siècle,"
+avec les travaux de George Boole,26,1906, avec les travaux de George Boole (
+et dans une moindre mesure ceux d'Auguste De Morgan,27,1941,et dans une moindre mesure ceux d'Auguste De Morgan)
+qui introduit un calcul de vérité où les combinaisons logiques comme la conjonction,28,1993," qui introduit un calcul de vérité où les combinaisons logiques comme la conjonction,"
+la disjonction et l'implication,29,2078," la disjonction et l'implication,"
+sont des opérations analogues à l'addition ou la multiplication des entiers,30,2111," sont des opérations analogues à l'addition ou la multiplication des entiers,"
+mais portant sur les valeurs de vérité faux et vrai,31,2188, mais portant sur les valeurs de vérité faux et vrai (
+ou 0 et 1,32,2242,ou 0 et 1) ;
+ces opérations booléennes se définissent au moyen de tables de vérité,33,2254," ces opérations booléennes se définissent au moyen de tables de vérité.
+
+"
+Le calcul de Boole introduisait l'idée,34,2327,"Le calcul de Boole introduisait l'idée,"
+apparemment paradoxale mais spectaculairement fructueuse,35,2366," apparemment paradoxale mais spectaculairement fructueuse,"
+que le langage mathématique pouvait se définir mathématiquement et devenir un objet d'étude pour les mathématiciens,36,2424, que le langage mathématique pouvait se définir mathématiquement et devenir un objet d'étude pour les mathématiciens.
+Cependant,37,2541," Cependant,"
+il ne permettait pas encore de résoudre les problèmes de fondements,38,2552, il ne permettait pas encore de résoudre les problèmes de fondements.
+Ainsi,39,2621," Ainsi,"
+de nombreux mathématiciens ont cherché à étendre ce concept au cadre général du raisonnement mathématique,40,2628," de nombreux mathématiciens ont cherché à étendre ce concept au cadre général du raisonnement mathématique,"
+ce qui a conduit à l'émergence des systèmes logiques formalisés,41,2735, ce qui a conduit à l'émergence des systèmes logiques formalisés.
+L'un des premiers de ces systèmes a été développé par Gottlob Frege au tournant du XXe siècle,42,2800, L'un des premiers de ces systèmes a été développé par Gottlob Frege au tournant du XXe siècle.
+Frege a posé les bases de la logique moderne,43,2895," Frege a posé les bases de la logique moderne,"
+influençant profondément la philosophie des mathématiques et ouvrant la voie à des développements comme le lambda-calcul d'Alonzo Church et les machines de Turing,44,2941," influençant profondément la philosophie des mathématiques et ouvrant la voie à des développements comme le lambda-calcul d'Alonzo Church et les machines de Turing.
+"
+Les années 1920 et David Hilbert,45,3106,"Les années 1920 et David Hilbert
+
+"
+En 1900 au cours d'une très célèbre conférence au congrès international des mathématiciens à Paris,46,3140,"En 1900 au cours d'une très célèbre conférence au congrès international des mathématiciens à Paris,"
+David Hilbert a proposé une liste des 23 problèmes non résolus les plus importants des mathématiques d'alors,47,3239, David Hilbert a proposé une liste des 23 problèmes non résolus les plus importants des mathématiques d'alors.
+Le deuxième était celui de la cohérence de l'arithmétique,48,3349," Le deuxième était celui de la cohérence de l'arithmétique,"
+c’est-à-dire de démontrer par des moyens finitistes la non-contradiction des axiomes de l'arithmétique,49,3408," c’est-à-dire de démontrer par des moyens finitistes la non-contradiction des axiomes de l'arithmétique.
+
+"
+Le programme de Hilbert a suscité de nombreux travaux en logique dans le premier quart du siècle,50,3514,"Le programme de Hilbert a suscité de nombreux travaux en logique dans le premier quart du siècle,"
+notamment le développement de systèmes d'axiomes pour les mathématiques : les axiomes de Peano pour l'arithmétique,51,3611," notamment le développement de systèmes d'axiomes pour les mathématiques : les axiomes de Peano pour l'arithmétique,"
+ceux de Zermelo complétés par Skolem et Fraenkel pour la théorie des ensembles et le développement par Whitehead et Russell d'un programme de formalisation des mathématiques,52,3727," ceux de Zermelo complétés par Skolem et Fraenkel pour la théorie des ensembles et le développement par Whitehead et Russell d'un programme de formalisation des mathématiques,"
+les Principia Mathematica,53,3902, les Principia Mathematica.
+C'est également la période où apparaissent les principes fondateurs de la théorie des modèles : notion de modèle d'une théorie,54,3929," C'est également la période où apparaissent les principes fondateurs de la théorie des modèles : notion de modèle d'une théorie,"
+théorème de Löwenheim-Skolem,55,4057," théorème de Löwenheim-Skolem.
+"
+La logique à partir des années 1930 et Kurt Gödel,56,4088,"La logique à partir des années 1930 et Kurt Gödel
+
+"
+En 1929 Kurt Gödel montre dans sa thèse de doctorat son théorème de complétude qui énonce le succès de l'entreprise de formalisation des mathématiques : tout raisonnement mathématique peut en principe être formalisé dans le calcul des prédicats,57,4139,En 1929 Kurt Gödel montre dans sa thèse de doctorat son théorème de complétude qui énonce le succès de l'entreprise de formalisation des mathématiques : tout raisonnement mathématique peut en principe être formalisé dans le calcul des prédicats.
+Ce théorème a été accueilli comme une avancée notable vers la résolution du programme de Hilbert,58,4384," Ce théorème a été accueilli comme une avancée notable vers la résolution du programme de Hilbert,"
+mais un an plus tard,59,4482," mais un an plus tard,"
+Gödel démontrait le théorème d'incomplétude,60,4504, Gödel démontrait le théorème d'incomplétude (
+publié en 1931,61,4550,publié en 1931)
+qui montrait irréfutablement l'impossibilité de réaliser ce programme,62,4565," qui montrait irréfutablement l'impossibilité de réaliser ce programme.
+
+"
+Ce résultat négatif n'a toutefois pas arrêté l'essor de la logique mathématique,63,4638,Ce résultat négatif n'a toutefois pas arrêté l'essor de la logique mathématique.
+Les années 1930 ont vu arriver une nouvelle génération de logiciens anglais et américains,64,4718," Les années 1930 ont vu arriver une nouvelle génération de logiciens anglais et américains,"
+notamment Alonzo Church,65,4809," notamment Alonzo Church,"
+Alan Turing,66,4834," Alan Turing,"
+Stephen Kleene,67,4847," Stephen Kleene,"
+Haskell Curry et Emil Post,68,4863," Haskell Curry et Emil Post,"
+qui ont grandement contribué à la définition de la notion d'algorithme et au développement de la théorie de la complexité algorithmique,69,4891, qui ont grandement contribué à la définition de la notion d'algorithme et au développement de la théorie de la complexité algorithmique (
+théorie de la calculabilité,70,5029,"théorie de la calculabilité,"
+théorie de la complexité des algorithmes,71,5057, théorie de la complexité des algorithmes).
+La théorie de la démonstration de Hilbert a également continué à se développer avec les travaux de Gerhard Gentzen qui a produit la première démonstration de cohérence relative et initié ainsi un programme de classification des théories axiomatiques,72,5100," La théorie de la démonstration de Hilbert a également continué à se développer avec les travaux de Gerhard Gentzen qui a produit la première démonstration de cohérence relative et initié ainsi un programme de classification des théories axiomatiques.
+
+"
+Le résultat le plus spectaculaire de l'après-guerre est dû à Paul Cohen qui démontre en utilisant la méthode du forcing l'indépendance de l'hypothèse du continu en théorie des ensembles,73,5353,"Le résultat le plus spectaculaire de l'après-guerre est dû à Paul Cohen qui démontre en utilisant la méthode du forcing l'indépendance de l'hypothèse du continu en théorie des ensembles,"
+résolvant ainsi le 1er problème de Hilbert,74,5539, résolvant ainsi le 1er problème de Hilbert.
+Mais la logique mathématique subit également une révolution due à l'apparition de l'informatique,75,5583, Mais la logique mathématique subit également une révolution due à l'apparition de l'informatique ;
+la découverte de la correspondance de Curry-Howard,76,5682," la découverte de la correspondance de Curry-Howard,"
+qui relie les preuves formelles au lambda-calcul de Church et donne un contenu calculatoire aux démonstrations,77,5734," qui relie les preuves formelles au lambda-calcul de Church et donne un contenu calculatoire aux démonstrations,"
+va déclencher un vaste programme de recherche,78,5846," va déclencher un vaste programme de recherche.
+"
+Intérêt de la logique mathématique dans les mathématiques,79,5894,"Intérêt de la logique mathématique dans les mathématiques
+"
+Interactions entre la logique et les mathématiques,80,5952,"Interactions entre la logique et les mathématiques
+
+"
+L'intérêt principal de la logique réside dans ses interactions avec d'autres domaines des mathématiques et les nouvelles méthodes qu'elle y apporte,81,6004,L'intérêt principal de la logique réside dans ses interactions avec d'autres domaines des mathématiques et les nouvelles méthodes qu'elle y apporte.
+De ce point de vue les réalisations les plus importantes viennent de la théorie des modèles qui est parfois considérée comme une branche de l'algèbre plutôt que de la logique,82,6152, De ce point de vue les réalisations les plus importantes viennent de la théorie des modèles qui est parfois considérée comme une branche de l'algèbre plutôt que de la logique ;
+la théorie des modèles s'applique notamment en théorie des groupes et en combinatoire,83,6329, la théorie des modèles s'applique notamment en théorie des groupes et en combinatoire (
+théorie de Ramsey,84,6417,"théorie de Ramsey).
+
+"
+D'autres interactions très productives existent toutefois : le développement de la théorie des ensembles est intimement lié à celui de la théorie de la mesure et a donné lieu à un domaine mathématique à part entière,85,6438,"D'autres interactions très productives existent toutefois : le développement de la théorie des ensembles est intimement lié à celui de la théorie de la mesure et a donné lieu à un domaine mathématique à part entière,"
+la théorie descriptive des ensembles,86,6654, la théorie descriptive des ensembles.
+[non pertinent] La théorie de la calculabilité est l'un des fondements de l'informatique théorique,87,6692,"[non pertinent] La théorie de la calculabilité est l'un des fondements de l'informatique théorique.
+
+"
+Depuis la fin du XXe siècle on a vu la théorie de la démonstration s'associer à la théorie des catégories et par ce biais commencer à interagir avec la topologie algébrique,88,6793,Depuis la fin du XXe siècle on a vu la théorie de la démonstration s'associer à la théorie des catégories et par ce biais commencer à interagir avec la topologie algébrique.
+D'autre part avec l'apparition de la logique linéaire elle entretient également des liens de plus en plus étroit avec l'algèbre linéaire,89,6966," D'autre part avec l'apparition de la logique linéaire elle entretient également des liens de plus en plus étroit avec l'algèbre linéaire,"
+voire avec la géométrie non commutative,90,7104, voire avec la géométrie non commutative.
+Plus récemment la théorie homotopique des types crée une connexion riche entre la logique,91,7145, Plus récemment la théorie homotopique des types crée une connexion riche entre la logique (
+la théorie des types,92,7237,la théorie des types)
+et les mathématiques,93,7258, et les mathématiques (
+la théorie de l'homotopie,94,7281,la théorie de l'homotopie)
+dont on n'entrevoit que les prémices,95,7307," dont on n'entrevoit que les prémices.
+"
+Formalisation,96,7346,"Formalisation
+
+"
+La formalisation des mathématiques dans des systèmes logiques,97,7361,"La formalisation des mathématiques dans des systèmes logiques,"
+qui a suscité en particulier les travaux de Whitehead et Russell,98,7423," qui a suscité en particulier les travaux de Whitehead et Russell,"
+a été l'une des grandes motivation du développement de la logique mathématique,99,7489, a été l'une des grandes motivation du développement de la logique mathématique.
+L'apparition d'outils informatiques spécialisés,100,7569," L'apparition d'outils informatiques spécialisés,"
+démonstrateurs automatiques,101,7618," démonstrateurs automatiques,"
+systèmes experts et assistants de preuve,102,7647," systèmes experts et assistants de preuve,"
+a donné un nouvel intérêt à ce programme,103,7689, a donné un nouvel intérêt à ce programme.
+Les assistants de preuve en particulier ont plusieurs applications en mathématique,104,7731," Les assistants de preuve en particulier ont plusieurs applications en mathématique.
+
+"
+Tout d'abord dans la fin du XXe siècle et au début du XXIe siècle deux anciennes conjectures ont été résolues en faisant appel à l'ordinateur pour traiter un très grand nombre de cas : le théorème des quatre couleurs et la conjecture de Kepler,105,7817,Tout d'abord dans la fin du XXe siècle et au début du XXIe siècle deux anciennes conjectures ont été résolues en faisant appel à l'ordinateur pour traiter un très grand nombre de cas : le théorème des quatre couleurs et la conjecture de Kepler.
+Les doutes soulevés par cette utilisation de l'ordinateur ont motivé la formalisation et la vérification complète de ces démonstrations,106,8061," Les doutes soulevés par cette utilisation de l'ordinateur ont motivé la formalisation et la vérification complète de ces démonstrations.
+
+"
+D'autre part des programmes de formalisation de mathématiques utilisant les assistants de preuves se sont développés afin de produire un corpus complètement formalisé de mathématiques,107,8200,D'autre part des programmes de formalisation de mathématiques utilisant les assistants de preuves se sont développés afin de produire un corpus complètement formalisé de mathématiques ;
+pour les mathématiques l'existence d'un tel corpus aurait en particulier l'intérêt de permettre des traitements algorithmiques comme la recherche par motif : trouver tous les théorèmes qui se déduisent du théorème des nombres premiers,108,8385," pour les mathématiques l'existence d'un tel corpus aurait en particulier l'intérêt de permettre des traitements algorithmiques comme la recherche par motif : trouver tous les théorèmes qui se déduisent du théorème des nombres premiers,"
+trouver tous les théorèmes à propos de la fonction zeta de Riemann,109,8621," trouver tous les théorèmes à propos de la fonction zeta de Riemann,"
+etc,110,8689," etc.
+"
+Quelques résultats fondamentaux,111,8695,"Quelques résultats fondamentaux
+
+"
+Quelques résultats importants ont été établis pendant la décennie 1930,112,8728,"Quelques résultats importants ont été établis pendant la décennie 1930.
+
+"
+Le théorème de complétude du calcul des prédicats du premier ordre que Gödel a montré dans sa thèse de doctorat,113,8801,"Le théorème de complétude du calcul des prédicats du premier ordre que Gödel a montré dans sa thèse de doctorat,"
+un an avant son célèbre théorème d'incomplétude,114,8913, un an avant son célèbre théorème d'incomplétude.
+Ce théorème énonce que toute démonstration mathématique peut être représentée dans le formalisme du calcul des prédicats,115,8962, Ce théorème énonce que toute démonstration mathématique peut être représentée dans le formalisme du calcul des prédicats (
+qui est donc complet,116,9085,"qui est donc complet).
+
+"
+L'ensemble des théorèmes du calcul des prédicats n'est pas calculable,117,9109,"L'ensemble des théorèmes du calcul des prédicats n'est pas calculable,"
+c'est-à-dire qu'aucun algorithme ne permet de vérifier si un énoncé donné est prouvable ou non,118,9179, c'est-à-dire qu'aucun algorithme ne permet de vérifier si un énoncé donné est prouvable ou non.
+Il existe cependant un algorithme qui étant donné une formule du premier ordre en trouve une preuve en un temps fini s'il en existe une,119,9275," Il existe cependant un algorithme qui étant donné une formule du premier ordre en trouve une preuve en un temps fini s'il en existe une,"
+mais continue indéfiniment sinon,120,9412, mais continue indéfiniment sinon.
+On dit que l'ensemble des formules du premier ordre prouvables est « récursivement énumérable » ou « semi-décidable »,121,9446," On dit que l'ensemble des formules du premier ordre prouvables est « récursivement énumérable » ou « semi-décidable ».
+
+"
+La cohérence,122,9567,La cohérence (
+non-contradiction,123,9581,non-contradiction)
+d'une théorie,124,9599, d'une théorie (
+ensemble d'axiomes,125,9615,"ensemble d'axiomes),"
+permettant de formaliser,126,9635, permettant de formaliser (
+au moins,127,9662,au moins)
+l'arithmétique,128,9671, l'arithmétique (
+par exemple les axiomes de Peano,129,9688,par exemple les axiomes de Peano)
+n'est pas une conséquence de ces seuls axiomes[3],130,9721, n'est pas une conséquence de ces seuls axiomes[3].
+C'est le fameux second théorème d'incomplétude de Gödel,131,9772," C'est le fameux second théorème d'incomplétude de Gödel.
+
+"
+Tout théorème purement logique peut être démontré en n'utilisant que des propositions qui sont des sous-formules de son énoncé,132,9831,Tout théorème purement logique peut être démontré en n'utilisant que des propositions qui sont des sous-formules de son énoncé.
+Connu sous le nom de propriété de la sous-formule,133,9958," Connu sous le nom de propriété de la sous-formule,"
+ce résultat est une conséquence du théorème d'élimination des coupures en calcul des séquents de Gerhard Gentzen : la propriété de la sous-formule a pour conséquence la cohérence de la logique,134,10009," ce résultat est une conséquence du théorème d'élimination des coupures en calcul des séquents de Gerhard Gentzen : la propriété de la sous-formule a pour conséquence la cohérence de la logique,"
+car elle interdit la dérivation de la formule vide,135,10203, car elle interdit la dérivation de la formule vide (
+identifiée à l'absurdité,136,10256,"identifiée à l'absurdité).
+
+"
+D'autres résultats importants ont été établis pendant la deuxième partie du XXe siècle,137,10284,D'autres résultats importants ont été établis pendant la deuxième partie du XXe siècle.
+L'indépendance de l'hypothèse du continu par rapport aux autres axiomes de la théorie des ensembles,138,10371, L'indépendance de l'hypothèse du continu par rapport aux autres axiomes de la théorie des ensembles (
+ZF,139,10473,ZF)
+est achevée en 1963 par Paul Cohen[4],140,10476, est achevée en 1963 par Paul Cohen[4].
+La théorie de la calculabilité se développe,141,10515, La théorie de la calculabilité se développe.
+Au tournant de la décennie 1980,142,10560," Au tournant de la décennie 1980,"
+la correspondance de Curry-Howard identifie la simplification des démonstrations et les programmes,143,10593," la correspondance de Curry-Howard identifie la simplification des démonstrations et les programmes,"
+créant ainsi un pont entre mathématiques et informatique,144,10693, créant ainsi un pont entre mathématiques et informatique.
+En 1990,145,10751," En 1990,"
+cette correspondance est étendue à la logique classique,146,10760, cette correspondance est étendue à la logique classique.
+La mécanisation,147,10817," La mécanisation,"
+et donc la formalisation,148,10834," et donc la formalisation,"
+complète de théorème de mathématiques comme le théorème des quatre couleurs ou le théorème de Feit-Thompson,149,10860," complète de théorème de mathématiques comme le théorème des quatre couleurs ou le théorème de Feit-Thompson.
+
+"
+Au XXIe siècle,150,10971,"Au XXIe siècle,"
+émergent de nouvelles branches prometteuses comme la théorie homotopique des types,151,10986," émergent de nouvelles branches prometteuses comme la théorie homotopique des types.
+"
+Système logique,152,11071,"Système logique
+"
+Définition,153,11087,"Définition
+
+"
+Un système logique,154,11099,Un système logique (
+ou une logique,155,11119,ou une logique)
+est un système formel auquel on ajoute une sémantique[5],156,11134, est un système formel auquel on ajoute une sémantique[5].
+Un système formel se constitue :,157,11192," Un système formel se constitue :
+
+"
+d'une syntaxe,158,11227,    d'une syntaxe (
+ou langage,159,11246,ou langage)
+dont on lui attribue deux données : un ensemble de symboles servant à la construction de formules,160,11257, dont on lui attribue deux données : un ensemble de symboles servant à la construction de formules.
+Dans les systèmes de logique classique ou intuitionniste,161,11356," Dans les systèmes de logique classique ou intuitionniste,"
+les formules représentent des énoncés mathématiques exprimés formellement,162,11414, les formules représentent des énoncés mathématiques exprimés formellement.
+La deuxième donnée est un ensemble de règles de constructions de formules,163,11489, La deuxième donnée est un ensemble de règles de constructions de formules.
+Les formules sont définies par des moyens combinatoires à l'aide de ces règles : suites de symboles,164,11564," Les formules sont définies par des moyens combinatoires à l'aide de ces règles : suites de symboles,"
+arbres étiquetés,165,11665," arbres étiquetés,"
+graphes…,166,11683," graphes…
+
+"
+d'un système de déduction,167,11694,    d'un système de déduction (
+ou d'un système d'inférence,168,11725,"ou d'un système d'inférence,"
+ou encore d'un calcul,169,11753, ou encore d'un calcul)
+disposant d'un ensemble d'axiomes et de règles d'inférence,170,11776, disposant d'un ensemble d'axiomes et de règles d'inférence.
+Les déductions sont également définies par des moyens combinatoires,171,11836, Les déductions sont également définies par des moyens combinatoires.
+Une déduction permet de dériver des formules,172,11905, Une déduction permet de dériver des formules (
+les formules prouvables ou théorèmes,173,11952,les formules prouvables ou théorèmes)
+à partir de formules de départ,174,11989, à partir de formules de départ (
+les axiomes,175,12022,les axiomes)
+au moyen de règles,176,12034, au moyen de règles (
+les règles d'inférence,177,12055,"les règles d'inférence).
+
+"
+La sémantique sert à attribuer à chaque formule construite à partir d'un système formel un sens,178,12081,"La sémantique sert à attribuer à chaque formule construite à partir d'un système formel un sens,"
+voire une valeur de vérité,179,12177, voire une valeur de vérité.
+Cette attribution se fait au moyen d'une interprétation,180,12205, Cette attribution se fait au moyen d'une interprétation (
+ou valuation,181,12263,ou valuation)
+des formules,182,12276, des formules;
+il s'agit d'une fonction associant à toute formule un objet dans une structure abstraite appelée modèle,183,12290," il s'agit d'une fonction associant à toute formule un objet dans une structure abstraite appelée modèle,"
+ce qui permet de définir la validité des formules,184,12395, ce qui permet de définir la validité des formules.
+Elle permet ainsi d'interpréter les formules d'un système formel dans un contexte donné,185,12446, Elle permet ainsi d'interpréter les formules d'un système formel dans un contexte donné.
+Dans le cadre de la logique classique,186,12535," Dans le cadre de la logique classique,"
+il s'agit d'attribuer à chaque formule la valeur Vrai ou la valeur Faux,187,12574," il s'agit d'attribuer à chaque formule la valeur Vrai ou la valeur Faux,"
+qu'on peut même respectivement identifier à donner la valeur 1 ou la valeur 0,188,12647, qu'on peut même respectivement identifier à donner la valeur 1 ou la valeur 0 (
+voir Algèbre de Boole,189,12727,"voir Algèbre de Boole).
+
+"
+Il arrive parfois que l'on puisse définir la syntaxe comme étant le système de déduction,190,12752,"Il arrive parfois que l'on puisse définir la syntaxe comme étant le système de déduction,"
+et qu'on appelle calcul le système formel entier,191,12841," et qu'on appelle calcul le système formel entier,"
+voire le système logique entier,192,12891, voire le système logique entier.
+De ce fait,193,12924," De ce fait,"
+il est courant d'utiliser le nom de calcul des propositions pour désigner ce qu'on devrait appeler logique des propositions,194,12936," il est courant d'utiliser le nom de calcul des propositions pour désigner ce qu'on devrait appeler logique des propositions,"
+de la même façon qu'on peut confondre calcul des prédicats et logique des prédicats,195,13061," de la même façon qu'on peut confondre calcul des prédicats et logique des prédicats.
+"
+Syntaxe et sémantique,196,13147,"Syntaxe et sémantique
+
+"
+La caractéristique principale des formules et des déductions est qu'il s'agit d'objets finis,197,13170,La caractéristique principale des formules et des déductions est qu'il s'agit d'objets finis ;
+plus encore,198,13264," plus encore,"
+chacun des ensembles de formules et de déductions est récursif,199,13277," chacun des ensembles de formules et de déductions est récursif,"
+c'est-à-dire que l'on dispose d'un algorithme qui détermine si un objet donné est une formule correcte ou une déduction correcte du système,200,13341, c'est-à-dire que l'on dispose d'un algorithme qui détermine si un objet donné est une formule correcte ou une déduction correcte du système.
+L'étude de logique du point de vue des formules et des expressions s'appelle la syntaxe,201,13482," L'étude de logique du point de vue des formules et des expressions s'appelle la syntaxe.
+
+"
+La sémantique,202,13573,"La sémantique,"
+au contraire,203,13587," au contraire,"
+échappe à la combinatoire en faisant appel,204,13601, échappe à la combinatoire en faisant appel (
+en général,205,13646,en général)
+à des objets infinis,206,13657, à des objets infinis.
+Elle a d'abord servi à « définir » la vérité,207,13679, Elle a d'abord servi à « définir » la vérité.
+Par exemple,208,13725," Par exemple,"
+en calcul des propositions,209,13738," en calcul des propositions,"
+les formules sont interprétées,210,13766," les formules sont interprétées,"
+par exemple,211,13798," par exemple,"
+par des éléments d'une algèbre de Boole,212,13811," par des éléments d'une algèbre de Boole.
+
+"
+Une mise en garde est de rigueur ici,213,13854,"Une mise en garde est de rigueur ici,"
+car Kurt Gödel,214,13891, car Kurt Gödel (
+suivi par Alfred Tarski,215,13908,suivi par Alfred Tarski)
+a montré avec son théorème d'incomplétude l'impossibilité de justifier mathématiquement la rigueur mathématique dans les mathématiques,216,13932, a montré avec son théorème d'incomplétude l'impossibilité de justifier mathématiquement la rigueur mathématique dans les mathématiques.
+C'est pourquoi il est plus approprié de voir la sémantique comme une métaphore : les formules — objets syntaxiques — sont projetées dans un autre monde,217,14068, C'est pourquoi il est plus approprié de voir la sémantique comme une métaphore : les formules — objets syntaxiques — sont projetées dans un autre monde.
+Cette technique — plonger les objets dans un monde plus vaste pour raisonner sur eux — est couramment utilisée en mathématique et est efficace,218,14221," Cette technique — plonger les objets dans un monde plus vaste pour raisonner sur eux — est couramment utilisée en mathématique et est efficace.
+
+"
+Cependant,219,14367,"Cependant,"
+la sémantique ne sert pas qu'à « définir » la vérité,220,14377, la sémantique ne sert pas qu'à « définir » la vérité.
+Par exemple,221,14431," Par exemple,"
+la sémantique dénotationnelle est une interprétation,222,14444," la sémantique dénotationnelle est une interprétation,"
+non des formules,223,14498," non des formules,"
+mais des déductions visant à capturer leur contenu calculatoire,224,14516," mais des déductions visant à capturer leur contenu calculatoire.
+"
+Systèmes de déduction,225,14582,"Systèmes de déduction
+
+"
+En logiques classique et intuitionniste,226,14605,"En logiques classique et intuitionniste,"
+on distingue deux types d'axiomes : les axiomes logiques qui expriment des propriétés purement logiques comme A ∨ ¬ A {\displaystyle A\lor \lnot A},227,14645, on distingue deux types d'axiomes : les axiomes logiques qui expriment des propriétés purement logiques comme A ∨ ¬ A {\displaystyle A\lor \lnot A} (
+principe du tiers exclu,228,14795,"principe du tiers exclu,"
+valide en logique classique mais pas en logique intuitionniste,229,14819, valide en logique classique mais pas en logique intuitionniste)
+et les axiomes extra-logiques qui définissent des objets mathématiques,230,14883, et les axiomes extra-logiques qui définissent des objets mathématiques ;
+par exemple les axiomes de Peano définissent les entiers de l'arithmétique tandis que les axiomes de Zermelo-Fraenkel définissent les ensembles,231,14956, par exemple les axiomes de Peano définissent les entiers de l'arithmétique tandis que les axiomes de Zermelo-Fraenkel définissent les ensembles.
+Quand le système possède des axiomes extra-logiques,232,15101," Quand le système possède des axiomes extra-logiques,"
+on parle de théorie axiomatique,233,15154, on parle de théorie axiomatique.
+L'étude des différents modèles d'une même théorie axiomatique est l'objet de la théorie des modèles,234,15187," L'étude des différents modèles d'une même théorie axiomatique est l'objet de la théorie des modèles.
+
+"
+Deux systèmes de déduction peuvent être équivalents au sens où ils ont exactement les mêmes théorèmes,235,15290,Deux systèmes de déduction peuvent être équivalents au sens où ils ont exactement les mêmes théorèmes.
+On démontre cette équivalence en fournissant des traductions des déductions de l'un dans les déductions de l'autre,236,15392, On démontre cette équivalence en fournissant des traductions des déductions de l'un dans les déductions de l'autre.
+Par exemple,237,15508," Par exemple,"
+il existe,238,15521, il existe (
+au moins,239,15533,au moins)
+trois types de systèmes de déduction équivalents pour le calcul des prédicats : les systèmes à la Hilbert,240,15542," trois types de systèmes de déduction équivalents pour le calcul des prédicats : les systèmes à la Hilbert,"
+la déduction naturelle et le calcul des séquents,241,15649, la déduction naturelle et le calcul des séquents.
+On y ajoute parfois le style de Fitch qui est une variante de la déduction naturelle dans laquelle les démonstrations sont présentées de façon linéaire,242,15699," On y ajoute parfois le style de Fitch qui est une variante de la déduction naturelle dans laquelle les démonstrations sont présentées de façon linéaire.
+
+"
+Alors que la théorie des nombres démontre des propriétés des nombres,243,15854,"Alors que la théorie des nombres démontre des propriétés des nombres,"
+on notera la principale caractéristique de la logique en tant que théorie mathématique : elle « démontre » des propriétés de systèmes de déduction dans lesquels les objets sont des « théorèmes »,244,15923, on notera la principale caractéristique de la logique en tant que théorie mathématique : elle « démontre » des propriétés de systèmes de déduction dans lesquels les objets sont des « théorèmes ».
+Il y a donc un double niveau dans lequel il ne faut pas se perdre,245,16119, Il y a donc un double niveau dans lequel il ne faut pas se perdre.
+Pour clarifier les choses,246,16186," Pour clarifier les choses,"
+les « théorèmes » énonçant des propriétés des systèmes de déduction sont parfois appelés des « métathéorèmes »,247,16213, les « théorèmes » énonçant des propriétés des systèmes de déduction sont parfois appelés des « métathéorèmes ».
+Le système de déduction que l'on étudie est appelé la « théorie » et le système dans lequel on énonce et démontre les métathéorèmes est appelé la « métathéorie »,248,16325," Le système de déduction que l'on étudie est appelé la « théorie » et le système dans lequel on énonce et démontre les métathéorèmes est appelé la « métathéorie ».
+
+"
+Les propriétés fondamentales des systèmes de déduction sont la correction,249,16490,"Les propriétés fondamentales des systèmes de déduction sont la correction,"
+la cohérence,250,16564," la cohérence,"
+la complétude,251,16578," la complétude .
+
+"
+La correction énonce que les théorèmes sont valides dans tous les modèles,252,16596,La correction énonce que les théorèmes sont valides dans tous les modèles.
+Cela signifie que les règles d'inférence sont bien adaptées à ces modèles,253,16670," Cela signifie que les règles d'inférence sont bien adaptées à ces modèles,"
+autrement dit que le système de déduction formalise correctement le raisonnement dans ces modèles,254,16745," autrement dit que le système de déduction formalise correctement le raisonnement dans ces modèles.
+
+"
+Un système de déduction est cohérent,255,16846,Un système de déduction est cohérent (
+on emploie aussi l'anglicisme consistant,256,16884,on emploie aussi l'anglicisme consistant)
+s'il admet un modèle,257,16925," s'il admet un modèle,"
+ou ce qui revient au même,258,16947," ou ce qui revient au même,"
+s'il ne permet pas de démontrer n'importe quelle formule,259,16974, s'il ne permet pas de démontrer n'importe quelle formule.
+On parle aussi de cohérence équationnelle lorsque le système admet un modèle non trivial,260,17032," On parle aussi de cohérence équationnelle lorsque le système admet un modèle non trivial,"
+c'est-à-dire ayant au moins deux éléments,261,17122, c'est-à-dire ayant au moins deux éléments.
+Cela revient à affirmer que le système ne permet pas de démontrer n'importe quelle équation,262,17165," Cela revient à affirmer que le système ne permet pas de démontrer n'importe quelle équation.
+
+"
+La complétude se définit par rapport à une famille de modèles,263,17260,La complétude se définit par rapport à une famille de modèles.
+Un système de déduction est complet par rapport à une famille de modèles,264,17322," Un système de déduction est complet par rapport à une famille de modèles,"
+si toute proposition qui est valide dans tous les modèles de la famille est un théorème,265,17396, si toute proposition qui est valide dans tous les modèles de la famille est un théorème.
+En bref,266,17485," En bref,"
+un système est complet si tout ce qui est valide est démontrable,267,17494," un système est complet si tout ce qui est valide est démontrable.
+
+"
+Une autre propriété des systèmes de déduction apparentée à la complétude est la cohérence maximale,268,17562,Une autre propriété des systèmes de déduction apparentée à la complétude est la cohérence maximale.
+Un système de déduction est maximalement cohérent,269,17661," Un système de déduction est maximalement cohérent,"
+si l'ajout d'un nouvel axiome qui n'est pas lui-même un théorème rend le système incohérent,270,17712," si l'ajout d'un nouvel axiome qui n'est pas lui-même un théorème rend le système incohérent.
+
+"
+Affirmer « tel système est complet pour telle famille de modèles » est un exemple typique de métathéorème,271,17807,"Affirmer « tel système est complet pour telle famille de modèles » est un exemple typique de métathéorème.
+
+"
+Dans ce cadre,272,17915,"Dans ce cadre,"
+la notion intuitive de vérité donne lieu à deux concepts formels : la validité et la démontrabilité,273,17929, la notion intuitive de vérité donne lieu à deux concepts formels : la validité et la démontrabilité.
+Les trois propriétés de correction,274,18030," Les trois propriétés de correction,"
+cohérence et complétude précisent comment ces notions peuvent être reliées,275,18066," cohérence et complétude précisent comment ces notions peuvent être reliées,"
+espérant qu'ainsi la vérité,276,18142," espérant qu'ainsi la vérité,"
+quête du logicien,277,18171," quête du logicien,"
+puisse être cernée,278,18190," puisse être cernée.
+"
+Le calcul des propositions,279,18211,"Le calcul des propositions
+"
+Article détaillé : Calcul des propositions,280,18238,"Article détaillé : Calcul des propositions.
+
+"
+Les propositions sont des formules exprimant des faits mathématiques,281,18283,"Les propositions sont des formules exprimant des faits mathématiques,"
+c'est-à-dire des propriétés qui ne dépendent d'aucun paramètre,282,18352," c'est-à-dire des propriétés qui ne dépendent d'aucun paramètre,"
+et qui donc ne peuvent qu'être vraies ou fausses[6],283,18416," et qui donc ne peuvent qu'être vraies ou fausses[6],"
+comme « 3 est un multiple de 4 »,284,18469, comme « 3 est un multiple de 4 » (
+au contraire de « n est un multiple de 4 »,285,18504,"au contraire de « n est un multiple de 4 »,"
+qui est vraie ou fausse selon la valeur que l'on donne au paramètre n,286,18547, qui est vraie ou fausse selon la valeur que l'on donne au paramètre n)
+ou « les zéros non triviaux de la fonction zêta de Riemann ont tous pour partie réelle 1/2 »,287,18618," ou « les zéros non triviaux de la fonction zêta de Riemann ont tous pour partie réelle 1/2 ».
+
+"
+Les propositions élémentaires,288,18714,"Les propositions élémentaires,"
+appelées variables propositionnelles,289,18744," appelées variables propositionnelles,"
+sont combinées au moyen de connecteurs pour former des formules complexes,290,18782, sont combinées au moyen de connecteurs pour former des formules complexes.
+Les propositions peuvent être interprétées en remplaçant chaque variable propositionnelle par une proposition,291,18857, Les propositions peuvent être interprétées en remplaçant chaque variable propositionnelle par une proposition.
+Par exemple une interprétation de la proposition,292,18968, Par exemple une interprétation de la proposition (
+P ∧ ¬ P,293,19019, P ∧ ¬ P )
+⟹ Q {\displaystyle,294,19029, ⟹ Q {\displaystyle (
+P\wedge \neg P,295,19050,P\wedge \neg P)
+\implies Q} pourrait être « si 3 est pair et 3 est impair alors 0 = 1 »,296,19065,"\implies Q} pourrait être « si 3 est pair et 3 est impair alors 0 = 1 ».
+"
+Connecteurs les plus fréquents,297,19138,"Connecteurs les plus fréquents
+
+"
+Les connecteurs sont présentés avec leur interprétation en logique classique,298,19170,"Les connecteurs sont présentés avec leur interprétation en logique classique.
+
+"
+La disjonction de deux propositions P et Q est la proposition notée P ∨ Q {\displaystyle P\vee Q} ou « P ou Q » qui est vraie si au moins une des deux propositions est vraie,299,19249,La disjonction de deux propositions P et Q est la proposition notée P ∨ Q {\displaystyle P\vee Q} ou « P ou Q » qui est vraie si au moins une des deux propositions est vraie;
+elle est donc fausse uniquement si les deux propositions sont fausses,300,19423," elle est donc fausse uniquement si les deux propositions sont fausses.
+
+"
+La négation d’une proposition P est la proposition notée ¬P,301,19496,"La négation d’une proposition P est la proposition notée ¬P,"
+ou « non P » qui est vraie lorsque P est fausse,302,19556, ou « non P » qui est vraie lorsque P est fausse;
+elle est donc fausse lorsque P est vraie,303,19605," elle est donc fausse lorsque P est vraie.
+
+"
+À partir de ces deux connecteurs,304,19649,"À partir de ces deux connecteurs,"
+on peut construire d’autres connecteurs ou abréviations utiles,305,19682," on peut construire d’autres connecteurs ou abréviations utiles.
+
+"
+La conjonction de deux propositions P et Q est la proposition suivante :,306,19748,"La conjonction de deux propositions P et Q est la proposition suivante :
+
+"
+¬,307,19822,    ¬ ( (
+¬ P,308,19831, ¬ P )
+∨,309,19837, ∨ (
+¬ Q,310,19841, ¬ Q ) )
+{\displaystyle \neg,311,19849, {\displaystyle \neg ((
+\neg P,312,19872,\neg P)
+\vee,313,19879,\vee (
+\neg Q,314,19885,\neg Q))
+} c'est-à-dire non,315,19893,} c'est-à-dire non ( (
+non P,316,19915,non P)
+ou,317,19921, ou (
+non Q,318,19926,"non Q) )
+
+"
+Celle-ci est notée P ∧ Q ou « P et Q » et n’est vraie que lorsque P et Q sont vraies et est donc fausse si l’une des deux propositions est fausse,319,19936,"Celle-ci est notée P ∧ Q ou « P et Q » et n’est vraie que lorsque P et Q sont vraies et est donc fausse si l’une des deux propositions est fausse.
+
+"
+L'implication de Q par P est la proposition,320,20084,L'implication de Q par P est la proposition (
+¬ P,321,20129, ¬ P )
+∨ Q {\displaystyle,322,20135, ∨ Q {\displaystyle (
+\neg P,323,20156,\neg P)
+\vee Q},324,20163,"\vee Q},"
+notée «  P ⟹ Q {\displaystyle P\implies Q} » ou « P implique Q »,325,20171," notée «  P ⟹ Q {\displaystyle P\implies Q} » ou « P implique Q »,"
+et qui est fausse seulement si P est une proposition vraie et Q fausse,326,20237," et qui est fausse seulement si P est une proposition vraie et Q fausse.
+
+"
+L'équivalence logique de P et Q est la proposition,327,20311,L'équivalence logique de P et Q est la proposition ( (
+P ⟹ Q,328,20365, P ⟹ Q )
+∧,329,20373, ∧ (
+Q ⟹ P,330,20377, Q ⟹ P ) )
+{\displaystyle {\bigg,331,20387, {\displaystyle {\bigg (}(
+P\implies Q,332,20413,P\implies Q)
+\wedge,333,20425,\wedge (
+Q\implies P,334,20433,Q\implies P)
+{\bigg,335,20445,{\bigg )
+}},336,20453,}} ( ((
+P implique Q,337,20460,P implique Q)
+et,338,20473, et (
+Q implique P,339,20478,"Q implique P) )),"
+notée «  P ⟺ Q {\displaystyle P\iff Q} » ou,340,20495, notée «  P ⟺ Q {\displaystyle P\iff Q} » ou (
+P est équivalent à Q,341,20541,"P est équivalent à Q),"
+et qui n'est vraie que si les deux propositions P et Q ont même valeur de vérité,342,20563," et qui n'est vraie que si les deux propositions P et Q ont même valeur de vérité.
+
+"
+Le ou exclusif ou disjonction exclusive de P et Q est la proposition P ∨ _ Q {\displaystyle P\,343,20647,Le ou exclusif ou disjonction exclusive de P et Q est la proposition P ∨ _ Q {\displaystyle P\;
+{\underline {\vee }}\,344,20742,{\underline {\vee }}\;
+Q},345,20764,Q} (
+parfois aussi notée[7] P ⊕ Q ou encore[8] P | Q ou par les concepteurs de circuits signe XOR,346,20768,parfois aussi notée[7] P ⊕ Q ou encore[8] P | Q ou par les concepteurs de circuits signe XOR)
+qui correspond à,347,20861, qui correspond à (
+P ∨ Q,348,20880, P ∨ Q )
+∧ ¬,349,20888, ∧ ¬ (
+P ∧ Q,350,20894, P ∧ Q )
+{\displaystyle,351,20902, {\displaystyle (
+P\vee Q,352,20919,P\vee Q)
+\wedge \neg,353,20927,\wedge \neg (
+P\wedge Q,354,20940,"P\wedge Q)},"
+c'est-à-dire en français : soit P,355,20952," c'est-à-dire en français : soit P,"
+soit Q,356,20987," soit Q,"
+mais pas les deux à la fois,357,20995, mais pas les deux à la fois.
+Le ou exclusif de P et Q correspond à P ⇔ ¬Q ou encore à ¬,358,21024, Le ou exclusif de P et Q correspond à P ⇔ ¬Q ou encore à ¬(
+P ⇔ Q,359,21084,P ⇔ Q).
+Cette proposition n'est vraie que si P et Q ont des valeurs de vérités distinctes,360,21091," Cette proposition n'est vraie que si P et Q ont des valeurs de vérités distinctes.
+"
+Connecteur universel,361,21175,"Connecteur universel
+
+"
+Une caractéristique du calcul propositionnel dit « classique » est que toutes les propositions peuvent s'exprimer à partir de deux connecteurs : par exemple ∨ et ¬,362,21197,Une caractéristique du calcul propositionnel dit « classique » est que toutes les propositions peuvent s'exprimer à partir de deux connecteurs : par exemple ∨ et ¬ (
+ou et non,363,21362,ou et non)
+[9],364,21372,[9].
+Mais d'autres choix sont possibles comme ⇒,365,21376, Mais d'autres choix sont possibles comme ⇒ (
+implication,366,21421,implication)
+et ⊥,367,21433, et ⊥ (
+faux,368,21440,faux).
+On peut n'utiliser qu'un seul connecteur,369,21446," On peut n'utiliser qu'un seul connecteur,"
+le symbole de Sheffer « | »,370,21488, le symbole de Sheffer « | » (
+Henry M,371,21518,Henry M.
+Sheffer,372,21526," Sheffer,"
+1913,373,21535," 1913),"
+appelé « stroke » par son concepteur et appelé aujourd'hui Nand et noté signe NAND par les concepteurs de circuits,374,21542, appelé « stroke » par son concepteur et appelé aujourd'hui Nand et noté signe NAND par les concepteurs de circuits ;
+on peut aussi n'utiliser que le connecteur Nor,375,21659, on peut aussi n'utiliser que le connecteur Nor (
+noté signe NOR,376,21708,noté signe NOR)
+comme l'a remarqué Charles Sanders Peirce,377,21723, comme l'a remarqué Charles Sanders Peirce (
+1880,378,21767,1880)
+sans le publier,379,21772, sans le publier.
+En somme,380,21789," En somme,"
+en logique classique,381,21799," en logique classique,"
+un unique connecteur suffit pour rendre compte de toutes les opérations logiques,382,21821," un unique connecteur suffit pour rendre compte de toutes les opérations logiques.
+"
+Le calcul des prédicats,383,21904,"Le calcul des prédicats
+"
+Articles détaillés : Calcul des prédicats et Logique d'ordre supérieur,384,21928,"Articles détaillés : Calcul des prédicats et Logique d'ordre supérieur.
+
+"
+Le calcul des prédicats étend le calcul propositionnel en permettant d'écrire des formules qui dépendent de paramètres,385,22001,Le calcul des prédicats étend le calcul propositionnel en permettant d'écrire des formules qui dépendent de paramètres ;
+pour cela le calcul des prédicats introduit les notions de variables,386,22121," pour cela le calcul des prédicats introduit les notions de variables,"
+de symboles de fonctions et de relations,387,22191," de symboles de fonctions et de relations,"
+de termes et de quantificateurs,388,22233, de termes et de quantificateurs ;
+les termes sont obtenus en combinant les variables au moyen des symboles de fonction,389,22267," les termes sont obtenus en combinant les variables au moyen des symboles de fonction,"
+les formules élémentaires sont obtenues en appliquant les symboles de relations à des termes,390,22353," les formules élémentaires sont obtenues en appliquant les symboles de relations à des termes.
+
+"
+Une formule typique du calcul des prédicats est ∀ a,391,22449,"Une formule typique du calcul des prédicats est ∀ a ,"
+b,392,22502, b ( (
+p = a × b,393,22508, p = a × b )
+⟹,394,22520, ⟹ (
+a = 1,395,22524, a = 1 )
+∨,396,22532, ∨ (
+b = 1,397,22536, b = 1 ) )
+{\displaystyle \forall a,398,22546," {\displaystyle \forall a,"
+b\,399,22572,b\;
+{\bigg,400,22575,{\bigg (}(
+p=a\times b,401,22585,p=a\times b)
+\implies,402,22597,\implies (
+a=1,403,22607,a=1)
+\vee,404,22611,\vee (
+b=1,405,22617,b=1)
+{\bigg,406,22621,{\bigg )
+}} qui lorsqu'on l'interprète dans les entiers exprime que le paramètre p est un nombre premier,407,22629,}} qui lorsqu'on l'interprète dans les entiers exprime que le paramètre p est un nombre premier (
+ou 1,408,22726,ou 1).
+Cette formule utilise deux symboles de fonction,409,22732, Cette formule utilise deux symboles de fonction (
+le point,410,22782,"le point,"
+fonction binaire interprétée par la multiplication des entiers,411,22791," fonction binaire interprétée par la multiplication des entiers,"
+et le symbole « 1 »,412,22855," et le symbole « 1 »,"
+fonction 0-aire,413,22876," fonction 0-aire,"
+c'est-à-dire constante,414,22893, c'est-à-dire constante)
+et un symbole de relation,415,22917, et un symbole de relation (
+pour l'égalité,416,22945,pour l'égalité).
+Les variables sont a,417,22961," Les variables sont a,"
+b et p,418,22983," b et p,"
+les termes sont a,419,22991, les termes sont a.
+b et 1 et les formules élémentaires sont « p = a,420,23010,b et 1 et les formules élémentaires sont « p = a.
+b »,421,23059,"b »,"
+« a = 1 » et « b = 1 »,422,23063, « a = 1 » et « b = 1 ».
+Les variables a et b sont quantifiées mais pas la variable p dont la formule dépend,423,23087," Les variables a et b sont quantifiées mais pas la variable p dont la formule dépend.
+
+"
+Il existe plusieurs variantes du calcul des prédicats,424,23174,Il existe plusieurs variantes du calcul des prédicats ;
+dans la plus simple,425,23229," dans la plus simple,"
+le calcul des prédicats du premier ordre,426,23250," le calcul des prédicats du premier ordre,"
+les variables représentent toutes les mêmes types d'objets,427,23292," les variables représentent toutes les mêmes types d'objets,"
+par exemple dans la formule ci-dessus,428,23352," par exemple dans la formule ci-dessus,"
+les 3 variables a,429,23391," les 3 variables a,"
+b et p vont toutes représenter des entiers,430,23410, b et p vont toutes représenter des entiers.
+Dans le calcul des prédicats du second ordre,431,23454," Dans le calcul des prédicats du second ordre,"
+il y a deux types de variables : des variables pour les objets et d'autres pour les prédicats,432,23500," il y a deux types de variables : des variables pour les objets et d'autres pour les prédicats,"
+c'est-à-dire les relations entre objets,433,23595, c'est-à-dire les relations entre objets.
+Par exemple en arithmétique du second ordre on emploie des variables pour représenter des entiers,434,23636," Par exemple en arithmétique du second ordre on emploie des variables pour représenter des entiers,"
+et d'autres pour des ensembles d'entiers,435,23735, et d'autres pour des ensembles d'entiers.
+La hiérarchie continue ainsi,436,23777," La hiérarchie continue ainsi,"
+au 3e ordre on a 3 types de variables pour les objets,437,23807," au 3e ordre on a 3 types de variables pour les objets,"
+les relations entre objets,438,23862," les relations entre objets,"
+les relations entre relations,439,23890," les relations entre relations,"
+etc,440,23921," etc.
+"
+Substitution,441,23927,"Substitution
+
+"
+Pour décrire le calcul des prédicats,442,23941,"Pour décrire le calcul des prédicats,"
+une opération essentielle est la substitution qui consiste à remplacer dans une formule toutes les occurrences d'une variable x par un terme a,443,23978," une opération essentielle est la substitution qui consiste à remplacer dans une formule toutes les occurrences d'une variable x par un terme a,"
+obtenant ainsi une nouvelle formule,444,24122, obtenant ainsi une nouvelle formule ;
+par exemple si on remplace la variable p par le terme n! + 1 dans la formule ci-dessus on obtient la formule «  ∀ a ∀ b,445,24160, par exemple si on remplace la variable p par le terme n! + 1 dans la formule ci-dessus on obtient la formule «  ∀ a ∀ b ( (
+n ! + 1 = a ⋅ b,446,24284, n ! + 1 = a ⋅ b )
+⟹,447,24302, ⟹ ( (
+a = 1,448,24308, a = 1 )
+∨,449,24316, ∨ (
+b = 1,450,24320, b = 1 ) )
+{\displaystyle \forall a\forall b,451,24330, {\displaystyle \forall a\forall b((
+n!+1=a\cdot b,452,24366,n!+1=a\cdot b)
+\implies,453,24380,\implies ((
+a=1,454,24391,a=1)
+\vee,455,24395,\vee (
+b=1,456,24401,b=1))
+} »,457,24406,} » (
+qui exprime que la factorielle de l'entier n plus 1 est un nombre premier,458,24411,"qui exprime que la factorielle de l'entier n plus 1 est un nombre premier).
+
+"
+Si P est une formule dépendant d'un paramètre x et a est un terme,459,24488,"Si P est une formule dépendant d'un paramètre x et a est un terme,"
+l’assemblage obtenu en remplaçant x par a dans P est une formule qui peut se noter P [ a / x ] {\displaystyle P[a/x]} ou,460,24554, l’assemblage obtenu en remplaçant x par a dans P est une formule qui peut se noter P [ a / x ] {\displaystyle P[a/x]} ou (
+a ∣ x,461,24677, a ∣ x )
+P {\displaystyle,462,24685, P {\displaystyle (
+a\mid x,463,24704,a\mid x)
+P},464,24712,"P},"
+ou d'autres variantes de ces notations,465,24715, ou d'autres variantes de ces notations.
+et s’appelle formule obtenue par substitution de x par a dans P,466,24755," et s’appelle formule obtenue par substitution de x par a dans P.
+
+"
+Pour mettre en évidence un paramètre x dont dépend une formule P,467,24822,"Pour mettre en évidence un paramètre x dont dépend une formule P,"
+on écrit celle-ci sous la forme P{x},468,24887, on écrit celle-ci sous la forme P{x} ;
+on note alors P{a} la proposition,469,24926, on note alors P{a} la proposition (
+a|x,470,24962,"a|x)P.
+
+"
+On peut chercher à trouver la,471,24970,On peut chercher à trouver la (
+les,472,25001,les)
+substitution,473,25005, substitution(s)
+qui rend,474,25021, qui rend(
+ent,475,25031,ent)
+une formule prouvable,476,25035, une formule prouvable ;
+le problème est particulièrement intéressant dans le cas de formules dites équationnelles,477,25059," le problème est particulièrement intéressant dans le cas de formules dites équationnelles,"
+c'est-à-dire de la forme t,478,25150, c'est-à-dire de la forme t(x)
+= t',479,25180, = t'(x).
+La théorie qui cherche à résoudre de telles équations dans le cadre de la logique mathématique s'appelle l'unification,480,25189," La théorie qui cherche à résoudre de telles équations dans le cadre de la logique mathématique s'appelle l'unification.
+"
+Les quantificateurs,481,25310,"Les quantificateurs
+
+"
+Les quantificateurs sont les ingrédients syntaxiques spécifiques du calcul des prédicats,482,25331,Les quantificateurs sont les ingrédients syntaxiques spécifiques du calcul des prédicats.
+Comme les connecteurs propositionnels ils permettent de construire de nouvelles formules à partir d'anciennes,483,25420," Comme les connecteurs propositionnels ils permettent de construire de nouvelles formules à partir d'anciennes,"
+mais ils s'appuient pour cela sur l'utilisation des variables,484,25531," mais ils s'appuient pour cela sur l'utilisation des variables.
+"
+Article détaillé : Quantificateurs,485,25595,"Article détaillé : Quantificateurs.
+
+"
+Soit une formule du calcul des prédicats P,486,25632,Soit une formule du calcul des prédicats P.
+On construit alors une nouvelle formule dite existentielle notée ∃ x P qui se lit « il existe x tel que P »,487,25675, On construit alors une nouvelle formule dite existentielle notée ∃ x P qui se lit « il existe x tel que P ».
+Supposons que P ne « dépende » que de x,488,25784, Supposons que P ne « dépende » que de x.
+La proposition ∃ x P est vraie quand il existe au moins un objet a,489,25825, La proposition ∃ x P est vraie quand il existe au moins un objet a (
+dans le domaine considéré,490,25894,"dans le domaine considéré,"
+celui sur lequel « varie » x,491,25920, celui sur lequel « varie » x)
+tel que,492,25950," tel que,"
+quand on substitue a à x dans P on obtienne une proposition vraie,493,25959, quand on substitue a à x dans P on obtienne une proposition vraie.
+La formule P est vue comme une propriété,494,26026," La formule P est vue comme une propriété,"
+et ∃ x P est vraie quand il existe un objet ayant cette propriété,495,26068," et ∃ x P est vraie quand il existe un objet ayant cette propriété.
+
+"
+Le signe ∃ s’appelle le quantificateur existentiel,496,26137,"Le signe ∃ s’appelle le quantificateur existentiel.
+
+"
+De même on peut construire à partir de P une formule dite universelle notée ∀ x P,497,26190,"De même on peut construire à partir de P une formule dite universelle notée ∀ x P,"
+qui se lit « pour tout x P » ou quel que soit x P,498,26272, qui se lit « pour tout x P » ou quel que soit x P.
+Elle signifie que tous les objets du domaine considéré,499,26323, Elle signifie que tous les objets du domaine considéré (
+ceux que x est susceptible de désigner,500,26380,ceux que x est susceptible de désigner)
+possèdent la propriété décrite par P,501,26419," possèdent la propriété décrite par P.
+
+"
+Le signe ∀ s’appelle le quantificateur universel,502,26459,"Le signe ∀ s’appelle le quantificateur universel.
+
+"
+En logique classique les quantificateurs universel et existentiel peuvent se définir l'un par rapport à l'autre,503,26510,"En logique classique les quantificateurs universel et existentiel peuvent se définir l'un par rapport à l'autre,"
+par négation car,504,26622," par négation car
+"
+∀ x P {\displaystyle \forall x\,505,26640,∀ x P {\displaystyle \forall x\;
+P} équivaut à ¬ ∃ x ¬ P {\displaystyle \neg \exists x\,506,26672,P} équivaut à ¬ ∃ x ¬ P {\displaystyle \neg \exists x\;
+\neg P}   et   ∃ x P {\displaystyle \exists x\,507,26727,\neg P}   et   ∃ x P {\displaystyle \exists x\;
+P} équivaut à ¬ ∀ x ¬ P {\displaystyle \neg \forall x\,508,26774,P} équivaut à ¬ ∀ x ¬ P {\displaystyle \neg \forall x\;
+\neg P},509,26829,"\neg P}
+
+"
+En effet « il est faux que tout objet possède une propriété donnée » signifie « il en existe au moins un qui ne possède pas cette propriété »,510,26838,"En effet « il est faux que tout objet possède une propriété donnée » signifie « il en existe au moins un qui ne possède pas cette propriété ».
+"
+Utilisation des quantificateurs,511,26981,"Utilisation des quantificateurs
+"
+Propriétés élémentaires,512,27013,"Propriétés élémentaires
+
+"
+Soient P et Q deux propositions et x un objet indéterminé,513,27038,"Soient P et Q deux propositions et x un objet indéterminé.
+
+"
+¬,514,27098,    ¬ (
+∃ x P,515,27105, ∃ x P )
+⇔,516,27113, ⇔ (
+∀ x ¬ P,517,27117, ∀ x ¬ P )
+{\displaystyle \neg,518,27127, {\displaystyle \neg (
+\exists x\,519,27149,\exists x\;P)
+\Leftrightarrow,520,27162,\Leftrightarrow (
+\forall x\,521,27179,\forall x\;
+\neg P,522,27190,"\neg P)}
+"
+,523,27199,    (
+∀ x,524,27204, ∀ x ) (
+P ∧ Q,525,27212, P ∧ Q )
+⇔,526,27220, ⇔ ( (
+∀ x,527,27226, ∀ x )
+P ∧,528,27232, P ∧ (
+∀ x,529,27238, ∀ x )
+Q,530,27244, Q )
+{\displaystyle,531,27248, {\displaystyle (
+\forall x,532,27265,\forall x)(
+P\wedge Q,533,27276,P\wedge Q)
+\Leftrightarrow,534,27286,\Leftrightarrow ((
+\forall x,535,27304,\forall x)
+P\wedge,536,27314,P\wedge (
+\forall x,537,27323,"\forall x)Q)}
+"
+,538,27337,    (
+∀ x,539,27342, ∀ x )
+P ∨,540,27348, P ∨ (
+∀ x,541,27354, ∀ x )
+Q ⇒,542,27360, Q ⇒ (
+∀ x,543,27366, ∀ x ) (
+P ∨ Q,544,27374, P ∨ Q )
+{\displaystyle,545,27382, {\displaystyle (
+\forall x,546,27399,\forall x)
+P\vee,547,27409,P\vee (
+\forall x,548,27416,\forall x)
+Q\Rightarrow,549,27426,Q\Rightarrow (
+\forall x,550,27440,\forall x)(
+P\vee Q,551,27451,"P\vee Q)}
+
+("
+Implication réciproque fausse en général,552,27463,"Implication réciproque fausse en général)
+
+"
+,553,27506,    (
+∃ x,554,27511, ∃ x ) (
+P ∨ Q,555,27519, P ∨ Q )
+⇔,556,27527, ⇔ ( (
+∃ x,557,27533, ∃ x )
+P ∨,558,27539, P ∨ (
+∃ x,559,27545, ∃ x )
+Q,560,27551, Q )
+{\displaystyle,561,27555, {\displaystyle (
+\exists x,562,27572,\exists x)(
+P\vee Q,563,27583,P\vee Q)
+\Leftrightarrow,564,27591,\Leftrightarrow ((
+\exists x,565,27609,\exists x)
+P\vee,566,27619,P\vee (
+\exists x,567,27626,"\exists x)Q)}
+"
+,568,27640,    (
+∃ x,569,27645, ∃ x ) (
+P ∧ Q,570,27653, P ∧ Q )
+⇒,571,27661, ⇒ ( (
+∃ x,572,27667, ∃ x )
+P ∧,573,27673, P ∧ (
+∃ x,574,27679, ∃ x )
+Q,575,27685, Q )
+{\displaystyle,576,27689, {\displaystyle (
+\exists x,577,27706,\exists x)(
+P\wedge Q,578,27717,P\wedge Q)
+\Rightarrow,579,27727,\Rightarrow ((
+\exists x,580,27741,\exists x)
+P\wedge,581,27751,P\wedge (
+\exists x,582,27760,"\exists x)Q)}
+
+("
+Implication réciproque fausse en général,583,27776,"Implication réciproque fausse en général)
+"
+Propriétés utiles,584,27818,"Propriétés utiles
+
+"
+Soient P une proposition et x et y des objets indéterminés,585,27837,"Soient P une proposition et x et y des objets indéterminés.
+
+"
+,586,27898,    (
+∀ x,587,27903, ∀ x ) (
+∀ y,588,27911, ∀ y )
+P ⇔,589,27917, P ⇔ (
+∀ y,590,27923, ∀ y ) (
+∀ x,591,27931, ∀ x )
+P {\displaystyle,592,27937, P {\displaystyle (
+\forall x,593,27956,\forall x)(
+\forall y,594,27967,\forall y)
+P\Leftrightarrow,595,27977,P\Leftrightarrow (
+\forall y,596,27995,\forall y)(
+\forall x,597,28006,\forall x)
+P},598,28016,"P}
+"
+,599,28019,    (
+∃ x,600,28024, ∃ x ) (
+∃ y,601,28032, ∃ y )
+P ⇔,602,28038, P ⇔ (
+∃ y,603,28044, ∃ y ) (
+∃ x,604,28052, ∃ x )
+P {\displaystyle,605,28058, P {\displaystyle (
+\exists x,606,28077,\exists x)(
+\exists y,607,28088,\exists y)
+P\Leftrightarrow,608,28098,P\Leftrightarrow (
+\exists y,609,28116,\exists y)(
+\exists x,610,28127,\exists x)
+P},611,28137,"P}
+"
+,612,28140,    (
+∃ x,613,28145, ∃ x ) (
+∀ y,614,28153, ∀ y )
+P ⇒,615,28159, P ⇒ (
+∀ y,616,28165, ∀ y ) (
+∃ x,617,28173, ∃ x )
+P {\displaystyle,618,28179, P {\displaystyle (
+\exists x,619,28198,\exists x)(
+\forall y,620,28209,\forall y)
+P\Rightarrow,621,28219,P\Rightarrow (
+\forall y,622,28233,\forall y)(
+\exists x,623,28244,\exists x)
+P},624,28254,"P}
+
+"
+S’il existe un x,625,28258,"S’il existe un x,"
+tel que pour tout y,626,28275," tel que pour tout y,"
+on ait P vraie,627,28296," on ait P vraie,"
+alors pour tout y,628,28312," alors pour tout y,"
+il existe bien un x,629,28331, il existe bien un x (
+celui obtenu avant,630,28353,celui obtenu avant)
+tel que P soit vraie,631,28372," tel que P soit vraie.
+"
+L’implication réciproque est fausse en général,632,28395,"L’implication réciproque est fausse en général,"
+parce que si pour chaque y,633,28442," parce que si pour chaque y,"
+il existe un x tel que P soit vraie,634,28470," il existe un x tel que P soit vraie,"
+ce x pourrait dépendre de y et varier suivant y,635,28507, ce x pourrait dépendre de y et varier suivant y.
+Ce x pourrait donc ne pas être le même pour tout y tel que P soit vraie,636,28556," Ce x pourrait donc ne pas être le même pour tout y tel que P soit vraie.
+"
+Propriétés moins intuitives,637,28630,"Propriétés moins intuitives
+
+"
+∀ x P x ⟹ ∃ x P x {\displaystyle \forall x\,638,28659,    ∀ x P x ⟹ ∃ x P x {\displaystyle \forall x\;
+Px\implies \exists xPx}[10],639,28707,"Px\implies \exists xPx}[10]
+
+"
+Si A est une formule où la variable x n'apparaît pas librement,640,28736,"Si A est une formule où la variable x n'apparaît pas librement,"
+on a[11] :,641,28799," on a[11] :
+
+"
+,642,28812,    (
+A ⟹ ∀ x P x,643,28817, A ⟹ ∀ x P x )
+⇔ ∀ x,644,28831, ⇔ ∀ x (
+A ⟹ P x,645,28839, A ⟹ P x )
+{\displaystyle,646,28849, {\displaystyle (
+A\implies \forall xPx,647,28866,A\implies \forall xPx)
+\Leftrightarrow \forall x,648,28888,\Leftrightarrow \forall x(
+A\implies Px,649,28914,"A\implies Px)}
+"
+,650,28929,    (
+A ⟹ ∃ x P x,651,28934, A ⟹ ∃ x P x )
+⇔ ∃ x,652,28948, ⇔ ∃ x (
+A ⟹ P x,653,28956, A ⟹ P x )
+{\displaystyle,654,28966, {\displaystyle (
+A\implies \exists xPx,655,28983,A\implies \exists xPx)
+\Leftrightarrow \exists x,656,29005,\Leftrightarrow \exists x(
+A\implies Px,657,29031,"A\implies Px)}
+
+"
+Mais aussi,658,29047,"Mais aussi,"
+ce qui est moins intuitif :,659,29058," ce qui est moins intuitif :
+
+"
+,660,29088,    (
+∀ x P x ⟹ A,661,29093, ∀ x P x ⟹ A )
+⇔ ∃ x,662,29107, ⇔ ∃ x (
+P x ⟹ A,663,29115, P x ⟹ A )
+{\displaystyle,664,29125, {\displaystyle (
+\forall xPx\implies A,665,29142,\forall xPx\implies A)
+\Leftrightarrow \exists x,666,29164,\Leftrightarrow \exists x(
+Px\implies A,667,29190,"Px\implies A)}
+"
+,668,29205,    (
+∃ x P x ⟹ A,669,29210, ∃ x P x ⟹ A )
+⇔ ∀ x,670,29224, ⇔ ∀ x (
+P x ⟹ A,671,29232, P x ⟹ A )
+{\displaystyle,672,29242, {\displaystyle (
+\exists xPx\implies A,673,29259,\exists xPx\implies A)
+\Leftrightarrow \forall x,674,29281,\Leftrightarrow \forall x(
+Px\implies A,675,29307,"Px\implies A)}
+
+"
+Associé à cette dernière règle,676,29323,"Associé à cette dernière règle,"
+voir le paradoxe du buveur,677,29354," voir le paradoxe du buveur.
+"
+L’égalité,678,29383,"L’égalité
+
+"
+Le symbole de relation « = » qui représente l'égalité,679,29394,"Le symbole de relation « = » qui représente l'égalité,"
+a un statut un petit peu particulier,680,29448," a un statut un petit peu particulier,"
+à la frontière entre les symboles logiques,681,29486, à la frontière entre les symboles logiques (
+connecteurs,682,29531,"connecteurs,"
+quantificateurs,683,29543, quantificateurs)
+et les symboles non logiques,684,29560, et les symboles non logiques (
+relations,685,29591,"relations,"
+fonctions,686,29601, fonctions).
+La formule a = b signifie que a et b représentent le même objet,687,29613, La formule a = b signifie que a et b représentent le même objet (
+ou encore que a et b sont des notations différentes du même objet,688,29679,"ou encore que a et b sont des notations différentes du même objet),"
+et se lit « a est égal à b »,689,29746," et se lit « a est égal à b ».
+
+"
+La théorie des modèles classique se développe le plus souvent dans le cadre du calcul des prédicats avec égalité,690,29778,"La théorie des modèles classique se développe le plus souvent dans le cadre du calcul des prédicats avec égalité,"
+c'est-à-dire que les théories considérées sont égalitaires : la relation d'égalité est utilisée en plus des symboles de la signature de la théorie,691,29891," c'est-à-dire que les théories considérées sont égalitaires : la relation d'égalité est utilisée en plus des symboles de la signature de la théorie.
+
+"
+Du point de vue de la déduction,692,30041,"Du point de vue de la déduction,"
+l'égalité est régie par des axiomes,693,30073," l'égalité est régie par des axiomes,"
+décrits ci-dessous,694,30110," décrits ci-dessous,"
+exprimant essentiellement que deux objets égaux ont les mêmes propriétés,695,30130, exprimant essentiellement que deux objets égaux ont les mêmes propriétés (
+et,696,30205,"et,"
+en logique du second ordre,697,30208," en logique du second ordre,"
+que la réciproque est vraie,698,30236," que la réciproque est vraie).
+
+"
+La négation de « = » est la relation « ≠ » qui est définie par a ≠ b si et seulement si ¬,699,30268,La négation de « = » est la relation « ≠ » qui est définie par a ≠ b si et seulement si ¬(
+a = b,700,30358,"a = b).
+"
+Axiomes de l'égalité en logique du premier ordre,701,30366,"Axiomes de l'égalité en logique du premier ordre
+
+"
+En logique du premier ordre :,702,30416,"En logique du premier ordre :
+
+"
+∀ x,703,30447,    ∀ x (
+x = x,704,30456, x = x )
+{\displaystyle \forall x\,705,30464, {\displaystyle \forall x\;(
+x=x,706,30492,x=x)
+},707,30496,} (
+réflexivité de =,708,30499,"réflexivité de =)
+"
+∀ x,709,30517,    ∀ x (
+∀ y,710,30526, ∀ y ) ( (
+x = y,711,30536, x = y )
+⇔,712,30544, ⇔ (
+y = x,713,30548, y = x )
+{\displaystyle \forall x,714,30556, {\displaystyle \forall x(
+\forall y,715,30582,\forall y)((
+x=y,716,30594,x=y)
+\Leftrightarrow,717,30598,\Leftrightarrow (
+y=x,718,30615,y=x)
+},719,30619,} (
+symétrie de =,720,30622,"symétrie de =)
+"
+∀ x,721,30637,    ∀ x (
+∀ y,722,30646, ∀ y ) (
+∀ z,723,30654, ∀ z ) ( ( (
+x = y,724,30666, x = y )
+∧,725,30674, ∧ (
+y = z,726,30678, y = z ) )
+⟹,727,30688, ⟹ (
+x = z,728,30692, x = z ) )
+{\displaystyle \forall x,729,30702, {\displaystyle \forall x(
+\forall y,730,30728,\forall y)(
+\forall z,731,30739,\forall z)(((
+x=y,732,30752,x=y)
+\wedge,733,30756,\wedge (
+y=z,734,30764,y=z))
+\implies,735,30769,\implies (
+x=z,736,30779,x=z))
+},737,30784,} (
+transitivité de =,738,30787,"transitivité de =)
+
+"
+La relation = étant réflexive,739,30807,"La relation = étant réflexive,"
+symétrique et transitive,740,30837," symétrique et transitive,"
+on dit que la relation = est une relation d'équivalence,741,30863," on dit que la relation = est une relation d'équivalence.
+
+"
+Soit P{x} une formule dépendant d'une variable x,742,30922,    Soit P{x} une formule dépendant d'une variable x.
+Soient a et b deux termes tels que a = b,743,30975, Soient a et b deux termes tels que a = b.
+Alors les propositions P{a} et P{b} sont équivalentes,744,31017, Alors les propositions P{a} et P{b} sont équivalentes.
+Ces axiomes,745,31072, Ces axiomes (
+un par formule P{x},746,31086,un par formule P{x})
+expriment que deux objets égaux ont les mêmes propriétés,747,31106," expriment que deux objets égaux ont les mêmes propriétés.
+"
+Soit F,748,31165,    Soit F(x)
+une fonction contenant une variable libre x,749,31178, une fonction contenant une variable libre x.
+Soient a et b des termes tels que a = b,750,31223, Soient a et b des termes tels que a = b.
+Alors les termes F,751,31264, Alors les termes F(a)
+et F,752,31286, et F(b) (
+obtenus en remplaçant respectivement x par a et x par b dans F,753,31296,obtenus en remplaçant respectivement x par a et x par b dans F(x))
+sont égaux,754,31362," sont égaux.
+
+"
+Ces deux dernières propriétés expriment intuitivement que = est la plus fine des relations d'équivalence,755,31376,"Ces deux dernières propriétés expriment intuitivement que = est la plus fine des relations d'équivalence.
+"
+Définition en logique du second ordre,756,31482,"Définition en logique du second ordre
+
+"
+En logique du second ordre on peut définir plus simplement l'égalité par :,757,31521,"En logique du second ordre on peut définir plus simplement l'égalité par :
+
+"
+a = b si et seulement si ∀P,758,31597,    a = b si et seulement si ∀P (
+Pa ⇔ Pb,759,31630,"Pa ⇔ Pb)
+
+"
+Autrement dit deux objets sont égaux si et seulement s'ils ont les mêmes propriétés,760,31640,Autrement dit deux objets sont égaux si et seulement s'ils ont les mêmes propriétés (
+principe d'identité des indiscernables énoncé par Leibniz,761,31725,principe d'identité des indiscernables énoncé par Leibniz) 

@@ -1,7 +1,1 @@
-static/audio
-flask/static/audio/
-flask/static/books/
 venv
-flask/static/books/*/data.json
-flask/static/books/**/data.json
-flask/static/books/petit_prince_fr/data.json
