@@ -182,19 +182,23 @@ def text_to_speech(text, audio_path, language):
 
 @app.route('/speak', methods=['POST'])
 def speak():
-    print("creating audio")
-    text = request.form.get('text', '')
-    language = request.form.get('language', '')
-    audio_filename = language + '_' + quote(text.replace(' ', '_')) + '.mp3'
+    try:
+        print("creating audio")
+        text = request.form.get('text', '')
+        language = request.form.get('language', '')
+
+        if not text or not language:
+            return jsonify({'error': 'Missing text or language'}), 400
+
+        audio_filename = language + '_' + quote(text.replace(' ', '_')) + '.mp3'
+        audio_path = os.path.join(os.path.dirname(__file__), AUDIO_DIR, audio_filename)
+
+        text_to_speech(text, audio_path, language)
+
+        return jsonify({'audio_url': f'/static/audio/{audio_filename}'})
     
-    # Use base path relative to the script location
-    audio_path = os.path.join(os.path.dirname(__file__), AUDIO_DIR, audio_filename)
-
-    text_to_speech(text, audio_path, language)
-
-    # Return URL for the audio
-    return jsonify({'audio_url': f'/static/audio/{audio_filename}'})
-
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/audio/<filename>')
