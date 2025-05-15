@@ -58,10 +58,12 @@
     </div>
 
     <div id="resumePrompt" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -30%); background:white; border:1px solid black; padding:20px; z-index:9999;">
-        <p>You have already reached a further point in the book. Do you want to resume from there?</p>
+        <p>You have already reached a further point in the book. 
+        </p><p>
+            
+            Do you want to resume from there?</p>
         <button id="resumeYes">Yes, take me there</button>
-        <button id="resumeNo">No, stay here</button>
-        <button id="resumeNever">No, and stop asking</button>
+        <button id="resumeNever">No, and stop saving my progress</button>
       </div>
       
 
@@ -75,12 +77,9 @@
         window.location.href = previousUrl;
         };
 
-        document.getElementById('resumeNo').onclick = function() {
-        modal.style.display = 'none';
-        };
 
         document.getElementById('resumeNever').onclick = function() {
-        localStorage.setItem('skipAskToResume', 'true');
+        setCookie('i', -1, 1);
         modal.style.display = 'none';
         };
         }
@@ -139,9 +138,17 @@
             window.scrollTo(0, document.body.scrollHeight);
             loadSpeak(phrase,language);
             let old_i = getCookie('i');
-            alert('old_i: '+old_i);
+            if (!old_i) {
+                const saveProgress = confirm("Do you want to save your progress?");
+                if (saveProgress) {
+                    setCookie('i', i, 1);
+                }
+                else {
+                    setCookie('i', -1, 1);
+                }
+            }
             // Check if user opted out of future prompts
-const skipPrompt = localStorage.getItem('skipAskToResume') === 'true';
+            const skipPrompt = (old_i === -1);
 
             if (!skipPrompt && old_i > i) {
                 showCustomResumePrompt(old_i, i, language, book_name);
