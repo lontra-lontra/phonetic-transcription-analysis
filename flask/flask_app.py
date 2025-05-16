@@ -180,13 +180,16 @@ def log():
 
 @app.route('/speak', methods=['POST'])
 def speak():
-    print("creating audio")
-    text = request.form.get('text', '')
-    language = request.form.get('language', '')
-    audio_filename = language+quote(text.replace(' ', '_') + '.mp3')  # Create a unique filename based on the text and encode it
-    audio_path = os.path.join("flask/"+AUDIO_DIR, audio_filename)
-    text_to_speech(text, audio_path,language)
-    return jsonify({'audio_url': f'/audio/{audio_filename}'})
+    try:
+        print("creating audio")
+        text = request.form.get('text', '')
+        language = request.form.get('language', '')
+        audio_filename = language+quote(text.replace(' ', '_') + '.mp3')  # Create a unique filename based on the text and encode it
+        audio_path = os.path.join("flask/"+AUDIO_DIR, audio_filename)
+        text_to_speech(text, audio_path,language)
+        return jsonify({'audio_url': f'/audio/{audio_filename}'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/audio/<filename>')
