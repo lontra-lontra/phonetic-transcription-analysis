@@ -16,6 +16,11 @@ AUDIO_DIR = 'static/audio'
 os.makedirs(AUDIO_DIR, exist_ok=True)
 
 
+def text_to_speech(text, audio_path, language):
+    os.makedirs(os.path.dirname(audio_path), exist_ok=True)
+
+    tts = gTTS(text=text, lang=language, slow=False)
+    tts.save(audio_path)
 
 
 def add_to_df(times_of_success, phrase_id, time):
@@ -73,12 +78,11 @@ class Book:
         return phrases, phrase_positions, full_text , df['corresponding_text'].tolist()
 
 books = {}
-books_dir = os.path.join(os.path.dirname(__file__), 'static', 'books')
+books_dir = 'flask/static/books'
 for book_name in os.listdir(books_dir):
     book_path = os.path.join(books_dir, book_name, 'book.csv')
     if os.path.isfile(book_path):
         books[book_name] = Book(book_path)
-
 
 
 @app.route('/book_list')
@@ -174,35 +178,15 @@ def log():
     return jsonify({'status': 'success'})
 
 
-def text_to_speech(text, audio_path, language):
-    try:
-        # Skip if file already exists
-        if not os.path.exists(audio_path):
-            os.makedirs(os.path.dirname(audio_path), exist_ok=True)
-            tts = gTTS(text=text, lang=language, slow=False)
-            tts.save(audio_path)
-    except Exception as e:
-        raise RuntimeError(f"text_to_speech failed: {str(e)}")
-
 @app.route('/speak', methods=['POST'])
 def speak():
-    try:
-        text = request.form.get('text', '')
-        language = request.form.get('language', '')
-
-        if not text or not language:
-            return jsonify({'error': 'Missing text or language'}), 400
-
-        # Generate a unique filename
-        audio_filename = language + '_' + quote(text.replace(' ', '_')) + '.mp3'
-        audio_path = os.path.join(os.path.dirname(__file__), AUDIO_DIR, audio_filename)
-
-        text_to_speech(text, audio_path, language)
-
-        return jsonify({'audio_url': f'/static/audio/{audio_filename}'})
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    print("creating audio")
+    text = request.form.get('text', '')
+    language = request.form.get('language', '')
+    audio_filename = language+quote(text.replace(' ', '_') + '.mp3')  # Create a unique filename based on the text and encode it
+    audio_path = os.path.join("flask/"+AUDIO_DIR, audio_filename)
+    text_to_speech(text, audio_path,language)
+    return jsonify({'audio_url': f'/audio/{audio_filename}'})
 
 
 @app.route('/audio/<filename>')
