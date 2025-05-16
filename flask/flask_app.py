@@ -16,11 +16,7 @@ AUDIO_DIR = 'static/audio'
 os.makedirs(AUDIO_DIR, exist_ok=True)
 
 
-def text_to_speech(text, audio_path, language):
-    os.makedirs(os.path.dirname(audio_path), exist_ok=True)
 
-    tts = gTTS(text=text, lang=language, slow=False)
-    tts.save(audio_path)
 
 
 def add_to_df(times_of_success, phrase_id, time):
@@ -176,6 +172,14 @@ def log():
         json.dump(existing_data, file, indent=4)
 
     return jsonify({'status': 'success'})
+
+def text_to_speech(text, audio_path, language):
+    os.makedirs(os.path.dirname(audio_path), exist_ok=True)
+    if os.path.exists(audio_path):
+        print(f"Audio file already exists: {audio_path}")   
+        return
+    tts = gTTS(text=text, lang=language, slow=False)
+    tts.save(audio_path)
 
 
 @app.route('/speak', methods=['POST'])
