@@ -193,6 +193,7 @@ def speak():
         text_to_speech(text, audio_path,language)
         return jsonify({'audio_url': f'/audio/{audio_filename}'})
     except Exception as e:
+        print(f"Error in /speak: {e}")
         return jsonify({'error': str(e)}), 500
 
 

@@ -1,5 +1,5 @@
 # Open the input file in read mode and output file in write mode
-with open("flask/the_fall.txt", "r") as infile, open("flask/the_fall_.txt", "w") as outfile:
+with open("flask/toefl_trainning_.txt", "r", encoding="utf-8") as infile, open("flask/toefl_trainning.txt", "w", encoding="utf-8") as outfile:
     # Read the entire content of the file
     content = infile.read()
     # Remove all newline characters and replace '.' with '.\n'
