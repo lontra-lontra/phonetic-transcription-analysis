@@ -270,149 +270,129 @@ let isupdating = false;
 
 
 
-    $('#guess').on('input', handleInput);
-    
-    function handleInput() {
-        
-        if (isupdating) {
-            return;
+ $('#guess').on('input', handleInput);
+
+function handleInput() {
+    if (isupdating) return;
+    isupdating = true;
+
+    //submitDefinition();
+    $('#word').val("");
+
+    const typedPhrase = cleanGuess(document.getElementById('guess').textContent);
+    let maskedPhrase = $('#masked-phrase').text();
+    let displayedPhrase = '';
+
+    const deletou = handleDeletions(typedPhrase);
+    const processedTyped = handleTrailingSpace(typedPhrase);
+
+    let wrongChar = '';
+    for (let i = 0; i < phrase.length; i++) {
+        displayedPhrase += processCharacter(i, processedTyped, maskedPhrase, (c) => { wrongChar = c; });
+    }
+
+    enforceSubstring(displayedPhrase, processedTyped);
+    handleWrongCharacter(wrongChar, processedTyped.length, deletou);
+
+    $('#masked-phrase').text(displayedPhrase);
+    moveCaretToEnd(document.getElementById('guess'));
+
+    maskedPhrase = $('#masked-phrase').text();
+    if (maskedPhrase === phrase) submitIfComplete(displayedPhrase);
+
+    isupdating = false;
+}
+
+/* ---------- helpers ---------- */
+
+function cleanGuess(str) {
+    return str.replace(/\n/g, '').replace('  ', ' ');
+}
+
+function handleDeletions(typed) {
+    let deleted = false;
+    if (typed.length < lastGuessSize) {
+        deleted = true;
+        entered_chars.push("<");
+        entered_times.push(now());
+    }
+    lastGuessSize = typed.length;
+    return deleted;
+}
+
+function handleTrailingSpace(typed) {
+    if (typed.length === 0) return typed;
+    const lastChar = typed[typed.length - 1];
+    if (lastChar === ' ' || lastChar === '\n' || lastChar === "\u00a0") {
+        return typed.trimEnd();
+    }
+    return typed;
+}
+
+function processCharacter(i, typed, masked, onWrong) {
+    if (i >= typed.length) return masked[i];
+
+    const char_a = typed[i] || '';
+    const char = phrase[i];
+
+    if (char.toLowerCase() === char_a.toLowerCase()) {
+        if (time_of_succes[i] === null) {
+            entered_chars.push(char);
+            entered_times.push(now());
+            time_of_succes[i] = now();
         }
-        isupdating = true;
+        return char;
+    } else {
+        onWrong(char_a);
+        return masked[i];
+    }
+}
 
-        submitDefinition();
-        $('#word').val("");
-        let phrase_d = '';
+function enforceSubstring(displayed, typed) {
+    const firstHashIndex = displayed.indexOf('#') !== -1 ? displayed.indexOf('#') : displayed.length;
+    const untilHash = displayed.substring(0, firstHashIndex);
 
+    if (untilHash.length > typed.replace('\n', '').length) {
+        document.getElementById('guess').focus();
+        document.execCommand('selectAll', false, null);
+        document.execCommand('delete', false, null);
+        document.execCommand('insertText', false, untilHash);
+    }
+}
 
-        let phrase_m = $('#masked-phrase').text();
+function handleWrongCharacter(wrongChar, pos, deleted) {
+    if (!wrongChar || deleted) return;
+    console.log('Error: Incorrect character entered:', wrongChar);
+    console.log('Error: Incorrect character entered:', pos);
+    failure_chars.push(wrongChar);
+    failure_ids.push(pos);
+    failure_times.push(now());
+    entered_chars.push(wrongChar);
+    entered_times.push(now());
+}
 
-
-        let phrase_a = document.getElementById('guess').textContent;  
-        phrase_a = phrase_a.replace(/\n/g, '');  // Remove newlines
-        phrase_a = phrase_a.replace('  ', ' ');
-
-
-        // detect if the user deleted a character
-        let deletou = false;
-        if (phrase_a.length < lastGuessSize) {
-            //alert('DELETOUUU');
-            deletou = true;
-            entered_chars.push("<");
-            entered_times.push(new Date().getTime() - pageLoadTime);
-            //return;
-        }
-        lastGuessSize = phrase_a.length;
-
-        // dectect if the user added a space, if so remove it 
-        if (phrase_a.length > 0 && (phrase_a[phrase_a.length - 1] === ' ' || phrase_a[phrase_a.length - 1] === '\n' || phrase_a[phrase_a.length - 1] === "\u00a0") )  {
-            //alert('Please do not end your guess with a space');
-            phrase_a = phrase_a.trimEnd();
-            //return;
-        }
-
-
-        //alert('ultima letra:'+phrase_a.length);
-
-        let wrong_character = '';
-        for (let i = 0; i < phrase.length; i++) 
-        {
-            let char_d;
-            if (i >= phrase_a.length) 
-            {
-                char_d = phrase_m[i];
-            } 
-            else 
-            {
-                const char_a = phrase_a[i] || '';
-                const char = phrase[i];
-
-                const l_char = char.toLowerCase();
-                const l_char_a = char_a.toLowerCase();
-                if (l_char === l_char_a) 
-                {
-                    
-                    if (time_of_succes[i] === null)
-                    {
-                        entered_chars.push(char);
-                        entered_times.push(new Date().getTime() - pageLoadTime);
-                        time_of_succes[i] = new Date().getTime() - pageLoadTime;
-                    }
-                    char_d = char;
-                } 
-                else 
-                {
-                    wrong_character = char_a;
-                    char_d = phrase_m[i];
-                }
-            }
-            phrase_d += char_d;
-        }
-        const firstHashIndex = phrase_d.indexOf('#') !== -1 ? phrase_d.indexOf('#') : phrase_d.length;
-        let substringUntilFirstHash = phrase_d.substring(0, firstHashIndex);
-
-        if(substringUntilFirstHash.length > phrase_a.replace('\n','').length){
-            //if (substringUntilFirstHash[substringUntilFirstHash.length-1] != ' '){   
-            console.log('fiz!');     
-            document.getElementById('guess').focus();
-            document.execCommand('selectAll', false, null);
-            document.execCommand('delete', false, null);
-            document.execCommand('insertText', false,substringUntilFirstHash);
-        //}
-        }
-        else{
-            if(wrong_character != ''){
-                if (deletou === false)
-                {
-                    console.log('Error: Incorrect character entered:', wrong_character);
-                    console.log('Error: Incorrect character entered:', phrase_a.length);
-                    failure_chars.push(wrong_character);
-                    failure_ids.push(phrase_a.length);
-                    failure_times.push(new Date().getTime() - pageLoadTime);
-                    entered_chars.push(wrong_character);
-                    entered_times.push(new Date().getTime() - pageLoadTime);
-                }
-            }
-        }   
-        
-
-        //document.execCommand('insertText', false, 'Text to insert');
-
-
-
-    // Set text preserving newlines and spaces
-    $('#masked-phrase').text(phrase_d);
-
-
-    
-    //document.getElementById('guess').innerText = substringUntilFirstHash;  // Use innerText for setting content
-
-    // Move caret to the end
-    const guessDiv = document.getElementById('guess');
+function moveCaretToEnd(el) {
     const range = document.createRange();
     const sel = window.getSelection();
-    range.selectNodeContents(guessDiv);
-    range.collapse(false);  // false to set caret at the end of the content
+    range.selectNodeContents(el);
+    range.collapse(false);
     sel.removeAllRanges();
     sel.addRange(range);
+}
 
+function submitIfComplete(displayed) {
+    const i = parseInt(new URLSearchParams(window.location.search).get('i'));
+    const book_name = new URLSearchParams(window.location.search).get('book_name');
+    const language = new URLSearchParams(window.location.search).get('language');
 
-    phrase_m = $('#masked-phrase').text();
-    if (phrase_m === phrase) {
+    const timestamp = new Date().toISOString();
+    time_of_succes.pop();
 
-        const i = parseInt(new URLSearchParams(window.location.search).get('i'));
-        const book_name = new URLSearchParams(window.location.search).get('book_name');
-        const language = new URLSearchParams(window.location.search).get('language');
-
-
-        // Submit the times_of_succes using POST request with JSON content type
-        const timestamp = new Date().toISOString(); // Get the current timestamp
-        time_of_succes.pop();
-        
-        $.ajax({
-            url: '/log',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
+    $.ajax({
+        url: '/log',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
             timestamp: timestamp,
             time_of_success: time_of_succes,
             failure_ids: failure_ids,
@@ -422,22 +402,22 @@ let isupdating = false;
             entered_times: entered_times,
             phrase_id: i,
             book_name: book_name,
-            }),
-            success: function(response) {
-                console.log('Log successfully sent:', response);
-                // Redirect after successful AJAX request
-                const nextUrl = `${window.location.origin}/?language=${language}&book_name=${book_name}&i=${i + 1}`;
-                window.location.href = nextUrl;
-            },
-            error: function(error) {
+        }),
+        success: function(response) {
+            console.log('Log successfully sent:', response);
+            const nextUrl = `${window.location.origin}/?language=${language}&book_name=${book_name}&i=${i + 1}`;
+            window.location.href = nextUrl;
+        },
+        error: function(error) {
             console.error('Error logging data:', error);
-            }
-            
-        });
-    }
-
-    isupdating = false;
+        }
+    });
 }
+
+function now() {
+    return new Date().getTime() - pageLoadTime;
+}
+
 
 
 
