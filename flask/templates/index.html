@@ -5,10 +5,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>French Language Tool</title>
+    {% if new_version %}
+    <script>
+        (function () {
+            try {
+                const savedTheme = window.localStorage.getItem('phonetic-theme');
+                const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (error) {
+                // The page can still load if storage or media-query access is unavailable.
+            }
+        }());
+    </script>
+    {% endif %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+    {% if new_version %}
+    <style>
+        body.new-version-page {
+            --page-background: #fff;
+            --page-foreground: #222;
+            --control-background: #fff;
+            --control-border: #aaa;
+            --counter-accent: #6f8f72;
+            background: var(--page-background);
+            color: var(--page-foreground);
+        }
+
+        body.new-version-page.dark-mode {
+            --page-background: #1d1f21;
+            --page-foreground: #eee;
+            --control-background: #292c2f;
+            --control-border: #73777b;
+            --counter-accent: #9bc3a0;
+        }
+
+        html[data-theme="dark"] body.new-version-page {
+            --page-background: #1d1f21;
+            --page-foreground: #eee;
+            --control-background: #292c2f;
+            --control-border: #73777b;
+            --counter-accent: #9bc3a0;
+        }
+
+        html[data-theme="dark"] body.new-version-page,
+        html[data-theme="dark"] body.new-version-page #resumePrompt {
+            background: #1d1f21;
+            color: #eee;
+        }
+
+        body.new-version-page #new-version-score {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--page-foreground);
+        }
+
+        body.new-version-page .counter-grid {
+            display: flex;
+            align-items: flex-start;
+            width: min(300px, 100%);
+            aspect-ratio: 5 / 1;
+        }
+
+        body.new-version-page .counter-visual {
+            width: min(300px, 100%);
+        }
+
+        body.new-version-page .counter-ticks {
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+            height: 5px;
+            overflow: hidden;
+        }
+
+        body.new-version-page .counter-tick {
+            flex: 1 1 0;
+            height: 4px;
+            display: flex;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        body.new-version-page .counter-tick::after {
+            width: 1px;
+            height: 4px;
+            background: var(--counter-accent);
+            content: '';
+        }
+
+        body.new-version-page .counter-reset {
+            transform-origin: right center;
+            will-change: transform;
+        }
+
+        body.new-version-page .counter-column {
+            flex: 1 1 0;
+            height: 100%;
+            display: block;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        body.new-version-page .counter-column::before {
+            display: block;
+            width: 100%;
+            height: var(--column-fill, 0%);
+            background: var(--counter-accent);
+            content: '';
+        }
+
+        body.new-version-page #lockout-timer {
+            font-size: .8rem;
+            color: var(--page-foreground);
+        }
+
+        body.new-version-page #theme-toggle {
+            position: fixed;
+            top: 8px;
+            right: 30px;
+            z-index: 1000;
+            padding: 3px 7px;
+            border: 1px solid var(--control-border);
+            border-radius: 3px;
+            background: var(--control-background);
+            color: var(--page-foreground);
+            cursor: pointer;
+        }
+
+        body.new-version-page #guess,
+        body.new-version-page #word {
+            background: var(--control-background);
+            color: var(--page-foreground);
+            border-color: var(--control-border);
+        }
+
+        html[data-theme="dark"] body.new-version-page #theme-toggle,
+        html[data-theme="dark"] body.new-version-page #guess,
+        html[data-theme="dark"] body.new-version-page #word {
+            background: #292c2f;
+            color: #eee;
+            border-color: #73777b;
+        }
+    </style>
+    {% endif %}
 </head>
-<body style="margin: 10%;"></body>
+<body class="{% if new_version %}new-version-page{% endif %}" style="margin: 10%;">
 
 
 
@@ -27,6 +171,10 @@
     </div>
     <!-- Container for all_text_before -->
     <div id="all-text-before-container" style="margin-bottom: 20px;"></div>
+
+    {% if new_version %}
+    <button id="theme-toggle" type="button">Dark mode</button>
+    {% endif %}
     
 
         <p id="phrase" style="display: none;">{{ phrase }}</p>
@@ -50,6 +198,16 @@
     <div style="text-align: center;">
         <audio id="audio-player" controls style="width: 300px;"></audio>
     </div>
+
+    {% if new_version %}
+    <div id="new-version-score">
+        <div class="counter-visual">
+            <div class="counter-ticks" aria-hidden="true"></div>
+            <div id="counter-grid" class="counter-grid" role="grid" aria-label="Counter"></div>
+        </div>
+        <span id="lockout-timer"></span>
+    </div>
+    {% endif %}
     
 
     
@@ -73,7 +231,7 @@
         modal.style.display = 'block';
 
         document.getElementById('resumeYes').onclick = function() {
-        const previousUrl = `${window.location.origin}/?language=${language}&book_name=${book_name}&i=${old_i}`;
+        const previousUrl = buildPageUrl(old_i, language, book_name);
         window.location.href = previousUrl;
         };
 
@@ -108,27 +266,411 @@
             return "";
         }
 
-        var phrase = JSON.parse('{{ phrase|tojson|safe }}');
+        var phrase = {{ phrase|tojson|safe }};
         var time_of_succes = new Array(phrase.length).fill(null);
+        var wordRanges = buildWordRanges(phrase);
+        var wordMistakes = new Set();
+        var scoredWords = new Set();
         var language = new URLSearchParams(window.location.search).get('language');
+        var bookName = new URLSearchParams(window.location.search).get('book_name');
         var failure_ids = [];
         var failure_times = [];
         var failure_chars = [];
         var entered_chars = [];
         var entered_times = [];
         var pageLoadTime;
+        var newVersion = {{ new_version|tojson|safe }};
+        var difficulty = {{ difficulty|int }};
+        var counter = 0;
+        var newVersionLocked = false;
+        var isComposing = false;
+        var phraseHearingCount = 0;
+        var audioIsPhrase = false;
+        var audioPlaybackStarted = false;
+        var counterVisualValue = null;
+        var counterAnimationQueue = [];
+        var counterAnimationRunning = false;
+        var counterAnimationTail = null;
+        var counterAnimationWaiters = [];
+        let logSubmissionInProgress = false;
+
+        function buildWordRanges(text) {
+            const ranges = [];
+            const wordPattern = /[A-Za-zÀ-ÿ]+(?:['’][A-Za-zÀ-ÿ]+)*/g;
+            let match;
+            while ((match = wordPattern.exec(text)) !== null) {
+                ranges.push({
+                    start: match.index,
+                    end: match.index + match[0].length,
+                    letterCount: match[0].replace(/[^A-Za-zÀ-ÿ]/g, '').length,
+                });
+            }
+            return ranges;
+        }
+
+        function wordKey(range) {
+            return `${range.start}:${range.end}`;
+        }
+
+        function wordAtIndex(index) {
+            return wordRanges.find((range) => index >= range.start && index < range.end);
+        }
+
+        function requiresWordRetry(range) {
+            return range.letterCount > 1;
+        }
+
+        function buildPageUrl(i, language, book_name) {
+            const pagePath = newVersion ? '/new/' : '/';
+            const params = new URLSearchParams({
+                language: language || '',
+                book_name: book_name || '',
+                i: String(i),
+            });
+            if (newVersion) params.set('dificulty', String(difficulty));
+            return `${window.location.origin}${pagePath}?${params.toString()}`;
+        }
+
+        function counterMaximum() {
+            return Math.max(1, difficulty * difficulty);
+        }
+
+        function rebuildCounterGrid() {
+            document.querySelectorAll('.counter-grid').forEach((grid) => {
+                const size = Math.max(1, difficulty);
+                if (grid.dataset.size === String(size)) return;
+
+                grid.textContent = '';
+                for (let column = 0; column < size; column += 1) {
+                    const columnElement = document.createElement('span');
+                    columnElement.className = 'counter-column';
+                    columnElement.setAttribute('role', 'gridcell');
+                    columnElement.style.setProperty('--column-index', String(column));
+                    grid.appendChild(columnElement);
+                }
+                grid.dataset.size = String(size);
+
+                const ticks = grid.parentElement.querySelector('.counter-ticks');
+                ticks.textContent = '';
+                for (let column = 0; column < size; column += 1) {
+                    const tick = document.createElement('span');
+                    tick.className = 'counter-tick';
+                    tick.style.setProperty('--column-index', String(column));
+                    ticks.appendChild(tick);
+                }
+                ticks.dataset.size = String(size);
+            });
+        }
+
+        function renderCounterGrid(grid, displayedCounter, gridDifficulty) {
+            const maximum = Math.max(1, gridDifficulty * gridDifficulty);
+            const fullColumns = Math.min(gridDifficulty, Math.floor(displayedCounter / gridDifficulty));
+            const remainder = displayedCounter - gridDifficulty * Math.floor(displayedCounter / gridDifficulty);
+            const partialColumn = Math.min(1, Math.max(0, remainder / gridDifficulty));
+            const columns = grid.children;
+            for (let index = 0; index < columns.length; index += 1) {
+                const fill = index < fullColumns ? 1 : index === fullColumns ? partialColumn : 0;
+                columns[index].style.setProperty('--column-fill', `${fill * 100}%`);
+                columns[index].setAttribute('aria-selected', String(fill > 0));
+            }
+            grid.setAttribute('aria-valuemin', '0');
+            grid.setAttribute('aria-valuemax', String(maximum));
+            grid.setAttribute('aria-valuenow', String(Math.min(displayedCounter, maximum)));
+        }
+
+        function animationDurationForLetters(letterCount) {
+            return Math.max(0, letterCount) * 100;
+        }
+
+        function resolveCounterAnimationWaiters() {
+            if (counterAnimationRunning || counterAnimationQueue.length) return;
+            const waiters = counterAnimationWaiters.splice(0);
+            waiters.forEach((resolve) => resolve());
+        }
+
+        function waitForCounterAnimations() {
+            if (!counterAnimationRunning && counterAnimationQueue.length === 0) {
+                return Promise.resolve();
+            }
+            return new Promise((resolve) => counterAnimationWaiters.push(resolve));
+        }
+
+        function processCounterAnimationQueue() {
+            if (!newVersion || counterAnimationRunning || counterAnimationQueue.length === 0) {
+                resolveCounterAnimationWaiters();
+                return;
+            }
+
+            const animation = counterAnimationQueue.shift();
+            const grid = document.getElementById('counter-grid');
+            const duration = animation.duration;
+            const startedAt = Date.now();
+            counterAnimationRunning = true;
+            counterVisualValue = animation.from;
+            if (animation.type === 'reset') {
+                grid.classList.add('counter-reset');
+            }
+
+            function frame() {
+                const progress = duration === 0
+                    ? 1
+                    : Math.min(1, (Date.now() - startedAt) / duration);
+                if (animation.type === 'reset') {
+                    // Keep the filled area intact and wipe it from left to right.
+                    renderCounterGrid(grid, animation.from, animation.displayDifficulty);
+                    grid.style.transform = `scaleX(${1 - progress})`;
+                } else {
+                    counterVisualValue = animation.from + ((animation.to - animation.from) * progress);
+                    renderCounterGrid(grid, counterVisualValue, animation.displayDifficulty);
+                }
+
+                if (progress < 1) {
+                    if (window.requestAnimationFrame) window.requestAnimationFrame(frame);
+                    else window.setTimeout(frame, 16);
+                    return;
+                }
+
+                counterVisualValue = null;
+                grid.classList.remove('counter-reset');
+                grid.style.removeProperty('transform');
+                if (animation.type === 'reset') rebuildCounterGrid();
+                counterAnimationRunning = false;
+                if (counterAnimationQueue.length) processCounterAnimationQueue();
+                else {
+                    counterAnimationTail = null;
+                    updateNewVersionCounter();
+                    resolveCounterAnimationWaiters();
+                }
+            }
+
+            frame();
+        }
+
+        function enqueueCounterAnimation(target, duration, displayDifficulty, type, requestedFrom = null) {
+            const from = counterAnimationTail === null
+                ? (requestedFrom === null
+                    ? (counterVisualValue === null ? counter : counterVisualValue)
+                    : requestedFrom)
+                : counterAnimationTail;
+            counterAnimationTail = target;
+            counterAnimationQueue.push({
+                from,
+                to: target,
+                duration: Math.max(0, duration),
+                displayDifficulty,
+                type,
+            });
+            processCounterAnimationQueue();
+        }
+
+        function increaseNewVersionDifficulty() {
+            if (!newVersion || counter <= counterMaximum()) return;
+
+            const previousCounter = counter;
+            const previousDifficulty = difficulty;
+            difficulty += 1;
+            counter = 0;
+            persistNewVersionCounter();
+
+            const currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.set('dificulty', String(difficulty));
+            window.history.replaceState({}, '', currentUrl.toString());
+            enqueueCounterAnimation(
+                0,
+                animationDurationForLetters(previousCounter),
+                previousDifficulty,
+                'reset',
+                previousCounter,
+            );
+        }
+
+        function updateNewVersionCounter() {
+            if (!newVersion || counterAnimationRunning || counterAnimationQueue.length) return;
+            if (counter > counterMaximum()) {
+                increaseNewVersionDifficulty();
+                return;
+            }
+            rebuildCounterGrid();
+            renderCounterGrid(document.getElementById('counter-grid'), counter, difficulty);
+        }
+
+        function resetWord(range) {
+            const key = wordKey(range);
+            for (let index = range.start; index < range.end; index += 1) {
+                time_of_succes[index] = null;
+            }
+            wordMistakes.delete(key);
+
+            const guess = document.getElementById('guess');
+            const prefix = phrase.substring(0, range.start);
+            guess.focus();
+            document.execCommand('selectAll', false, null);
+            document.execCommand('delete', false, null);
+            document.execCommand('insertText', false, prefix);
+            lastGuessSize = prefix.length;
+        }
+
+        function completeWords(typed) {
+            if (!newVersion) return null;
+            for (const range of wordRanges) {
+                if (typed.length < range.end) break;
+
+                const key = wordKey(range);
+                if (scoredWords.has(key)) continue;
+                if (wordMistakes.has(key) && requiresWordRetry(range)) return range;
+
+                scoredWords.add(key);
+                const previousCounter = counter;
+                counter += range.letterCount;
+                persistNewVersionCounter();
+                enqueueCounterAnimation(
+                    counter,
+                    animationDurationForLetters(range.letterCount),
+                    difficulty,
+                    'add',
+                    previousCounter,
+                );
+                if (counter > counterMaximum()) increaseNewVersionDifficulty();
+            }
+            return null;
+        }
+
+        function allWordsScored() {
+            return wordRanges.every((range) => scoredWords.has(wordKey(range)));
+        }
+
+        function startNewVersionLockout() {
+            if (!newVersion || newVersionLocked) return;
+
+            newVersionLocked = true;
+            const guess = document.getElementById('guess');
+            const timer = document.getElementById('lockout-timer');
+            guess.setAttribute('contenteditable', 'false');
+            guess.blur();
+
+            const endTime = Date.now() + 1000;
+            function updateTimer() {
+                const remaining = Math.max(0, endTime - Date.now());
+                timer.textContent = `Blocked · ${(Math.ceil(remaining / 100) / 10).toFixed(1)} s`;
+                if (remaining > 0) {
+                    window.setTimeout(updateTimer, 100);
+                    return;
+                }
+
+                timer.textContent = '';
+                newVersionLocked = false;
+                guess.setAttribute('contenteditable', 'true');
+                guess.focus();
+            }
+
+            updateTimer();
+        }
+
+        function registerNewVersionError() {
+            if (!newVersion) return;
+            const previousCounter = counter;
+            counter -= difficulty;
+            if (counter < 0) {
+                counter = 0;
+                startNewVersionLockout();
+            }
+            persistNewVersionCounter();
+            enqueueCounterAnimation(
+                counter,
+                animationDurationForLetters(difficulty),
+                difficulty,
+                'penalty',
+                previousCounter,
+            );
+        }
+
+        function counterStorageKey() {
+            return `phonetic-counter-v2:${language || ''}:${bookName || ''}:${difficulty}`;
+        }
+
+        function loadNewVersionCounter() {
+            if (!newVersion) return;
+            try {
+                const saved = Number.parseFloat(window.localStorage.getItem(counterStorageKey()));
+                if (Number.isFinite(saved)) counter = Math.max(0, saved);
+            } catch (error) {
+                console.warn('Could not load the counter:', error);
+            }
+            updateNewVersionCounter();
+        }
+
+        function registerPhraseHearing() {
+            if (!newVersion || !audioIsPhrase || audioPlaybackStarted) return;
+
+            audioPlaybackStarted = true;
+            phraseHearingCount += 1;
+            if (phraseHearingCount > 1) {
+                const previousCounter = counter;
+                counter *= 0.90;
+                persistNewVersionCounter();
+                const audio = document.getElementById('audio-player');
+                const duration = Number.isFinite(audio.duration) && audio.duration > 0
+                    ? audio.duration * 1000
+                    : 1000;
+                enqueueCounterAnimation(counter, duration, difficulty, 'reduction', previousCounter);
+            }
+        }
+
+        function resetAudioPlaybackSession() {
+            audioPlaybackStarted = false;
+        }
+
+        function persistNewVersionCounter() {
+            if (!newVersion) return;
+            try {
+                window.localStorage.setItem(counterStorageKey(), String(counter));
+            } catch (error) {
+                console.warn('Could not save the counter:', error);
+            }
+        }
+
+        function applyNewVersionTheme(isDark) {
+            if (!newVersion) return;
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            document.body.classList.toggle('dark-mode', isDark);
+            const toggle = document.getElementById('theme-toggle');
+            toggle.textContent = isDark ? 'Light mode' : 'Dark mode';
+            try {
+                window.localStorage.setItem('phonetic-theme', isDark ? 'dark' : 'light');
+            } catch (error) {
+                console.warn('Could not save the theme:', error);
+            }
+        }
+
+        function initializeNewVersionTheme() {
+            if (!newVersion) return;
+            let savedTheme = '';
+            try {
+                savedTheme = window.localStorage.getItem('phonetic-theme') || '';
+            } catch (error) {
+                console.warn('Could not load the theme:', error);
+            }
+
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyNewVersionTheme(savedTheme === 'dark' || (!savedTheme && prefersDark));
+            document.getElementById('theme-toggle').addEventListener('click', function() {
+                applyNewVersionTheme(!document.body.classList.contains('dark-mode'));
+            });
+        }
 
         window.onload = function() {
             //submitSpeak(phrase);
             
             pageLoadTime = new Date().getTime();
+            loadNewVersionCounter();
+            initializeNewVersionTheme();
             document.getElementById('guess').focus();
             displayAllTextBefore();
             displayPhrasesBefore();
             const i = parseInt(new URLSearchParams(window.location.search).get('i'));
             const language = (new URLSearchParams(window.location.search).get('language'));
             const book_name = new URLSearchParams(window.location.search).get('book_name');
-            const nextUrl = `${window.location.origin}/?language=${language}&book_name=${book_name}&i=${i + 1}`;
+            const nextUrl = buildPageUrl(i + 1, language, book_name);
   
             if (phrase[0] == '{')
             {
@@ -191,6 +733,8 @@
         }
         
         function submitSpeak(text, language) {
+            audioIsPhrase = text === phrase;
+            if (audioIsPhrase) resetAudioPlaybackSession();
             $.post('/speak', { text: text , language: language}, function(data) {
                 if (data.audio_url) {
                     $('#audio-player').attr('src', data.audio_url);
@@ -199,12 +743,17 @@
             });
         }
         function loadSpeak(text, language) {
+            audioIsPhrase = text === phrase;
+            if (audioIsPhrase) resetAudioPlaybackSession();
             $.post('/speak', { text: text , language: language}, function(data) {
                 if (data.audio_url) {
                     $('#audio-player').attr('src', data.audio_url);
                 }
             });
         }
+
+        $('#audio-player').on('playing', registerPhraseHearing);
+        $('#audio-player').on('ended', resetAudioPlaybackSession);
         
 
 
@@ -267,13 +816,43 @@
         });
 let lastGuessSize = 0;    
 let isupdating = false;
+function isPendingAccent(typed, masked) {
+    const firstHashIndex = masked.indexOf('#');
+    const acceptedLength = firstHashIndex === -1 ? phrase.length : firstHashIndex;
+    const pending = typed.substring(acceptedLength);
+    return pending.length === 1 && /[´`^¨~\u0300-\u036f]/.test(pending);
+}
 
+$('#guess').on('keydown', function(event) {
+    if (event.key === 'Dead') isComposing = true;
+});
 
+$('#guess').on('compositionstart', function() {
+    isComposing = true;
+});
 
- $('#guess').on('input', handleInput);
+$('#guess').on('compositionend', function() {
+    isComposing = false;
+    window.setTimeout(handleInput, 0);
+});
+
+$('#guess').on('input', function(event) {
+    const nativeEvent = event.originalEvent || event;
+    const typed = cleanGuess(document.getElementById('guess').textContent);
+    const masked = $('#masked-phrase').text();
+    if (nativeEvent.isComposing) {
+        isComposing = true;
+        return;
+    }
+    if (isComposing && !isPendingAccent(typed, masked)) isComposing = false;
+    if (isComposing || isPendingAccent(typed, masked)) return;
+    handleInput();
+});
 
 function handleInput() {
     if (isupdating) return;
+    if (newVersionLocked) return;
+    if (isComposing) return;
     isupdating = true;
 
     //submitDefinition();
@@ -284,21 +863,54 @@ function handleInput() {
     let displayedPhrase = '';
 
     const deletou = handleDeletions(typedPhrase);
-    const processedTyped = handleTrailingSpace(typedPhrase);
+    let processedTyped = handleTrailingSpace(typedPhrase);
+
+    if (isPendingAccent(processedTyped, maskedPhrase)) {
+        isupdating = false;
+        return;
+    }
 
     let wrongChar = '';
+    let wrongIndex = -1;
     for (let i = 0; i < phrase.length; i++) {
-        displayedPhrase += processCharacter(i, processedTyped, maskedPhrase, (c) => { wrongChar = c; });
+        displayedPhrase += processCharacter(i, processedTyped, maskedPhrase, (c, index) => {
+            if (wrongIndex === -1) {
+                wrongChar = c;
+                wrongIndex = index;
+            }
+        });
     }
 
     enforceSubstring(displayedPhrase, processedTyped);
-    handleWrongCharacter(wrongChar, processedTyped.length, deletou);
+    handleWrongCharacter(
+        wrongChar,
+        wrongIndex === -1 ? processedTyped.length : wrongIndex + 1,
+        deletou,
+    );
+
+    // Do not reset on the same event as a mistake. This leaves the user at the
+    // failed character so they can correct it before the word is reset.
+    const failedWord = wrongIndex === -1 ? completeWords(processedTyped) : null;
+    if (failedWord) {
+        resetWord(failedWord);
+        processedTyped = phrase.substring(0, failedWord.start);
+        maskedPhrase = maskPhrase(phrase);
+        displayedPhrase = '';
+        for (let i = 0; i < phrase.length; i += 1) {
+            displayedPhrase += processCharacter(i, processedTyped, maskedPhrase, () => {});
+        }
+    }
 
     $('#masked-phrase').text(displayedPhrase);
     moveCaretToEnd(document.getElementById('guess'));
 
     maskedPhrase = $('#masked-phrase').text();
-    if (maskedPhrase === phrase) submitIfComplete(displayedPhrase);
+    // Text can look complete during a browser input event even when a word
+    // was previously failed. Only navigate after every word has been cleanly
+    // completed and no failed word is still pending.
+    if (maskedPhrase === phrase && wordMistakes.size === 0 && allWordsScored()) {
+        submitIfComplete(displayedPhrase);
+    }
 
     isupdating = false;
 }
@@ -343,7 +955,7 @@ function processCharacter(i, typed, masked, onWrong) {
         }
         return char;
     } else {
-        onWrong(char_a);
+        onWrong(char_a, i);
         return masked[i];
     }
 }
@@ -351,8 +963,9 @@ function processCharacter(i, typed, masked, onWrong) {
 function enforceSubstring(displayed, typed) {
     const firstHashIndex = displayed.indexOf('#') !== -1 ? displayed.indexOf('#') : displayed.length;
     const untilHash = displayed.substring(0, firstHashIndex);
+    const normalizedTyped = typed.replace('\n', '');
 
-    if (untilHash.length > typed.replace('\n', '').length) {
+    if (untilHash !== normalizedTyped) {
         document.getElementById('guess').focus();
         document.execCommand('selectAll', false, null);
         document.execCommand('delete', false, null);
@@ -369,6 +982,11 @@ function handleWrongCharacter(wrongChar, pos, deleted) {
     failure_times.push(now());
     entered_chars.push(wrongChar);
     entered_times.push(now());
+    const failedWord = wordAtIndex(Math.max(0, pos - 1));
+    if (failedWord && requiresWordRetry(failedWord)) {
+        wordMistakes.add(wordKey(failedWord));
+    }
+    registerNewVersionError();
 }
 
 function moveCaretToEnd(el) {
@@ -381,6 +999,9 @@ function moveCaretToEnd(el) {
 }
 
 function submitIfComplete(displayed) {
+    if (logSubmissionInProgress) return;
+    logSubmissionInProgress = true;
+
     const i = parseInt(new URLSearchParams(window.location.search).get('i'));
     const book_name = new URLSearchParams(window.location.search).get('book_name');
     const language = new URLSearchParams(window.location.search).get('language');
@@ -405,11 +1026,15 @@ function submitIfComplete(displayed) {
         }),
         success: function(response) {
             console.log('Log successfully sent:', response);
-            const nextUrl = `${window.location.origin}/?language=${language}&book_name=${book_name}&i=${i + 1}`;
-            window.location.href = nextUrl;
+            const nextUrl = buildPageUrl(i + 1, language, book_name);
+            waitForCounterAnimations().then(() => {
+                window.location.href = nextUrl;
+            });
         },
         error: function(error) {
+            logSubmissionInProgress = false;
             console.error('Error logging data:', error);
+            alert('Could not save your progress. Please try again.');
         }
     });
 }
@@ -455,12 +1080,16 @@ function now() {
 
 
     function handleGuess() {
+    if (newVersionLocked) return;
     $('#word').val("");
     submitDefinition();
 
 
     const phrase_m = $('#masked-phrase').text();
     if (phrase === phrase_m) {
+        if (logSubmissionInProgress) return;
+        logSubmissionInProgress = true;
+
         const i = parseInt(new URLSearchParams(window.location.search).get('i'));
         const book_name = new URLSearchParams(window.location.search).get('book_name');
         const language = new URLSearchParams(window.location.search).get('language');
@@ -488,11 +1117,15 @@ function now() {
                 console.log('Log successfully sent:', response);
                 
                 // Redirect after successful AJAX request
-                const nextUrl = `${window.location.origin}/?language=${language}&book_name=${book_name}&i=${i + 1}`;
-                window.location.href = nextUrl;
+                const nextUrl = buildPageUrl(i + 1, language, book_name);
+                waitForCounterAnimations().then(() => {
+                    window.location.href = nextUrl;
+                });
             },
             error: function(error) {
+            logSubmissionInProgress = false;
             console.error('Error logging data:', error);
+            alert('Could not save your progress. Please try again.');
             }
             
         });

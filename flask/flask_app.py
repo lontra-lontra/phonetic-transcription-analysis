@@ -8,11 +8,14 @@ from bs4 import BeautifulSoup
 import json
 import pandas as pd
 from urllib.parse import quote
+import tempfile
+import fcntl
 
 app = Flask(__name__)
 
 # Path to save audio files
-AUDIO_DIR = 'static/audio'
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+AUDIO_DIR = os.path.join(APP_DIR, 'static', 'audio')
 os.makedirs(AUDIO_DIR, exist_ok=True)
 
 
@@ -46,6 +49,42 @@ def add_to_df(times_of_success, phrase_id, time):
     else:
         # If it doesn't exist, create a new file with the header
         new_df.to_csv(csv_file_path, mode='w', header=True, index=False)
+
+
+def append_log_data(json_file_path, log_data):
+    """Append one log entry without allowing concurrent writes to corrupt JSON."""
+    lock_file_path = f'{json_file_path}.lock'
+    directory = os.path.dirname(json_file_path) or '.'
+
+    with open(lock_file_path, 'a+') as lock_file:
+        fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
+        try:
+            if os.path.exists(json_file_path):
+                with open(json_file_path, 'r', encoding='utf-8') as file:
+                    existing_data = json.load(file)
+            else:
+                existing_data = []
+
+            if not isinstance(existing_data, list):
+                raise ValueError(f'{json_file_path} must contain a JSON list')
+
+            existing_data.append(log_data)
+
+            file_descriptor, temporary_path = tempfile.mkstemp(
+                prefix='.data-', suffix='.json', dir=directory, text=True
+            )
+            try:
+                with os.fdopen(file_descriptor, 'w', encoding='utf-8') as file:
+                    json.dump(existing_data, file, indent=4)
+                    file.write('\n')
+                    file.flush()
+                    os.fsync(file.fileno())
+                os.replace(temporary_path, json_file_path)
+            finally:
+                if os.path.exists(temporary_path):
+                    os.unlink(temporary_path)
+        finally:
+            fcntl.flock(lock_file.fileno(), fcntl.LOCK_UN)
 
 
 
@@ -114,7 +153,57 @@ def index():
     print(corresponding_texts[:phrase_id])
     all_text_before = json.dumps(''.join(corresponding_texts[:phrase_id]))
     
-    return render_template('index.html', phrase=phrase, all_text_before = all_text_before,phrases_before = [], phrases_after = phrases[phrase_id+1:], phrase_id=phrase_id, total_phrases=len(phrases), book_name=book_name)
+    return render_template(
+        'index.html',
+        phrase=phrase,
+        all_text_before=all_text_before,
+        phrases_before=[],
+        phrases_after=phrases[phrase_id+1:],
+        phrase_id=phrase_id,
+        total_phrases=len(phrases),
+        book_name=book_name,
+        new_version=False,
+        language=request.args.get('language', default=''),
+        difficulty=1,
+    )
+
+
+@app.route('/new/')
+def new_index():
+    phrase_id = request.args.get('i', default=0, type=int)
+    book_name = request.args.get('book_name', type=str)
+    language = request.args.get('language', default='')
+    difficulty = request.args.get('dificulty', default=None, type=int)
+    if difficulty is None:
+        difficulty = request.args.get('difficulty', default=1, type=int)
+    difficulty = max(1, difficulty or 1)
+
+    if book_name not in books:
+        return f"Unknown book: {book_name}", 404
+
+    book = books[book_name]
+    corresponding_texts = book.corresponding_texts
+    phrase = (
+        book.phrases[phrase_id]
+        if 0 <= phrase_id < len(book.phrases)
+        else f"Phrase not found.{len(book.phrases)}"
+    )
+
+    all_text_before = json.dumps(''.join(corresponding_texts[:phrase_id]))
+
+    return render_template(
+        'index.html',
+        phrase=phrase,
+        all_text_before=all_text_before,
+        phrases_before=[],
+        phrases_after=book.phrases[phrase_id+1:],
+        phrase_id=phrase_id,
+        book_name=book_name,
+        language=language,
+        difficulty=difficulty,
+        total_phrases=len(book.phrases),
+        new_version=True,
+    )
 
 @app.route('/define', methods=['POST'])
 def define():
@@ -160,16 +249,11 @@ def log():
     }
 
     json_file_path = f'flask/static/books/{book_name}/data.json'
-    if os.path.exists(json_file_path):
-        with open(json_file_path, 'r') as file:
-            existing_data = json.load(file)
-    else:
-        existing_data = []
-
-    existing_data.append(log_data)
-
-    with open(json_file_path, 'w') as file:
-        json.dump(existing_data, file, indent=4)
+    try:
+        append_log_data(json_file_path, log_data)
+    except (json.JSONDecodeError, OSError, ValueError) as error:
+        app.logger.exception('Unable to save log data to %s', json_file_path)
+        return jsonify({'status': 'error', 'error': str(error)}), 500
 
     return jsonify({'status': 'success'})
 
@@ -189,7 +273,7 @@ def speak():
         text = request.form.get('text', '')
         language = request.form.get('language', '')
         audio_filename = language+quote(text.replace(' ', '_') + '.mp3')  # Create a unique filename based on the text and encode it
-        audio_path = os.path.join("flask/"+AUDIO_DIR, audio_filename)
+        audio_path = os.path.join(AUDIO_DIR, audio_filename)
         text_to_speech(text, audio_path,language)
         return jsonify({'audio_url': f'/audio/{audio_filename}'})
     except Exception as e:
@@ -199,7 +283,7 @@ def speak():
 
 @app.route('/audio/<filename>')
 def audio(filename):
-    return send_from_directory(AUDIO_DIR, quote(filename))
+    return send_from_directory(AUDIO_DIR, quote(filename, safe=''))
 
 def get_french_definition__(french_word):
     try:
