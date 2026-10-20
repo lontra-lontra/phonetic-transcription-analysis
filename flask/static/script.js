@@ -333,7 +333,7 @@ function displayAllTextBefore() {
 
     // Replace {something} with an <img> tag
     all_text_before = all_text_before.replace(/{([^}]+)}/g, function(match, p1) {
-        return `<br><img src="static/images/${p1}.png" style="display: block; margin: 0 auto;">`;
+        return `<br><img src="/static/images/${p1}.png" style="display: block; margin: 0 auto;">`;
     });
 
     // Set the content inside the container

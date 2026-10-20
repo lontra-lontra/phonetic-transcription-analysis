@@ -1,5 +1,5 @@
 
-from flask import Flask, request, render_template, jsonify, send_from_directory
+from flask import Flask, request, render_template, jsonify, send_from_directory, url_for
 from gtts import gTTS
 import os
 import re
@@ -125,7 +125,13 @@ def books_list():
     book_names = books.keys()
     book_list_html = "<ul>"
     for book_name in book_names:
-        book_list_html += f'<li><a href="/?i=0&language={book_name[-2:]}&book_name={book_name}">{book_name}</a></li>'
+        book_url = url_for(
+            'new_index',
+            i=0,
+            language=book_name[-2:],
+            book_name=book_name,
+        )
+        book_list_html += f'<li><a href="{book_url}">{book_name}</a></li>'
     book_list_html += "</ul>"
 
 
